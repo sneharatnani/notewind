@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar.js";
+
 export default function Home() {
-  return <p>home page</p>;
+  return <Navbar />;
 }
