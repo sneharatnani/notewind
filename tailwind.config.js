@@ -1,19 +1,13 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      sm: "481px",
+      md: "769px",
+      lg: "993px",
+      xl: "1281px",
+    },
     extend: {},
   },
-  plugins: [require("daisyui")],
-
-  // daisyUI config (optional)
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    // darkTheme: "dark",
-  },
+  plugins: [require("@tailwindcss/forms")],
 };
