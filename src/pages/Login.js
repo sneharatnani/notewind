@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase-config.js";
 import { UserContext } from "../context/UserContext.js";
 import { useContext } from "react";
@@ -12,20 +12,17 @@ export default function Login() {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      navigate("../home", { replace: true });
+      navigate("../notes", { replace: true });
     } catch (error) {
       console.log(error);
     }
   }
-
-  const logOutUser = () => signOut(auth);
 
   return (
     <>
       <button onClick={logInUser} className="btn">
         login
       </button>
-      <button onClick={logOutUser}>sign out</button>
       {user && <p>{user.displayName}</p>}
     </>
   );
