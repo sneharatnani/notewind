@@ -1,16 +1,15 @@
+import { useContext } from "react";
 import Navbar from "../components/navbar/Navbar.js";
-import Pencil from "../components/notes/Pencil.js";
 import NewNote from "../components/notes/NewNote.js";
-import { useState } from "react";
+import { NotesContext } from "../context/NotesContext.js";
 
 export default function Notes() {
-  const [open, setOpen] = useState(false);
-  const change = () => setOpen((prev) => !prev);
+  const { notes } = useContext(NotesContext);
+  console.log(notes);
   return (
     <>
       <Navbar />
-      <Pencil setOpen={change} />
-      <NewNote open={open} setOpen={setOpen} />
+      <NewNote />
       <section className="md:pl-64"></section>
     </>
   );

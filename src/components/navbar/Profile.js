@@ -1,26 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase-config.js";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext.js";
 
 export default function Profile() {
-  const navigate = useNavigate();
-  const logOutUser = () => {
-    navigate("../", { replace: true });
-    signOut(auth);
-  };
+  const { logOutUser, user } = useContext(UserContext);
 
   return (
     <Menu as="div" className="ml-3 relative">
       <div>
         <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <span className="sr-only">Open user menu</span>
-          <img
-            className="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
+          {user && (
+            <img
+              className="h-8 w-8 rounded-full"
+              src={user.photoURL}
+              alt={user.displayName}
+            />
+          )}
         </Menu.Button>
       </div>
       <Transition
