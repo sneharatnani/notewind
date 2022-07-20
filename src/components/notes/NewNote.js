@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import Pencil from "./Pencil.js";
+import Toolbar from "./toolbar/Toolbar.js";
 
 export default function NewNote() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,8 +63,9 @@ export default function NewNote() {
                     name="body"
                     value={newNote.body}
                     onChange={handleChange}
-                    className="border-0 focus:ring-0 min-h-[5rem] resize-none focus-visible:outline-none w-full block"
+                    className="border-0 focus:ring-0 min-h-[8rem] resize-none focus-visible:outline-none w-full block"
                   />
+                  <Toolbar />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

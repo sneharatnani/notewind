@@ -1,16 +1,11 @@
-import { Route, Routes } from "react-router-dom";
-import Login from "./pages/Login.js";
-import Notes from "./pages/Notes.js";
+import { UserContext } from "./context/UserContext.js";
+import { useContext } from "react";
+import AuthenticatedApp from "./section/AuthenticatedApp.js";
+import UnauthenticatedApp from "./section/UnauthenticatedApp.js";
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/notes" element={<Notes />} />
-      </Routes>
-    </div>
-  );
+  const { user } = useContext(UserContext);
+  return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
 export default App;

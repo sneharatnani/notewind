@@ -1,7 +1,7 @@
 export default function Pencil({ setOpen }) {
   return (
     <div
-      className="bg-indigo-700 h-12 w-12 rounded-2xl flex items-center justify-center absolute bottom-14 right-14"
+      className="bg-sky-400 h-12 w-12 rounded-2xl flex items-center justify-center absolute bottom-14 right-14"
       onClick={setOpen}
     >
       <svg

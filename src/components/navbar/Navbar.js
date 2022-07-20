@@ -42,7 +42,7 @@ export default function Navbar() {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-indigo-700">
+                <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-sky-400">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -85,7 +85,7 @@ export default function Navbar() {
         {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-col flex-grow pt-5 bg-indigo-700 overflow-y-auto">
+          <div className="flex flex-col flex-grow pt-5 bg-sky-400 overflow-y-auto">
             <Logo />
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 pb-4 space-y-1">
