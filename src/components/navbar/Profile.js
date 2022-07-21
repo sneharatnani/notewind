@@ -8,15 +8,13 @@ export default function Profile() {
   return (
     <Menu as="div" className="ml-3 relative">
       <div>
-        <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-sky-200">
           <span className="sr-only">Open user menu</span>
-          {user && (
-            <img
-              className="h-8 w-8 rounded-full"
-              src={user.photoURL}
-              alt={user.displayName}
-            />
-          )}
+          <img
+            className="h-8 w-8 rounded-full"
+            src={user.photoURL}
+            alt={user.displayName}
+          />
         </Menu.Button>
       </div>
       <Transition
