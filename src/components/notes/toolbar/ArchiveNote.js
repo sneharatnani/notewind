@@ -2,7 +2,7 @@ export default function ArchiveNote() {
   return (
     <svg
       stroke="currentColor"
-      className="cursor-pointer fill-gray-500 h-5 w-5"
+      className="cursor-pointer fill-gray-600 h-5 w-5 hover:fill-gray-500/80"
       strokeWidth="0"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

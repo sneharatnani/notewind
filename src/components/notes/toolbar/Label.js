@@ -2,7 +2,7 @@ export default function Label() {
   return (
     <svg
       stroke="currentColor"
-      className="fill-white h-6 w-6 mr-4 flex-shrink-0"
+      className="cursor-pointer fill-gray-600 h-5 w-5 hover:fill-gray-500/80"
       strokeWidth="0"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"

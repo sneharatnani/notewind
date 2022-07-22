@@ -1,13 +1,32 @@
-import ColorPalette from "../ColorPalette.js";
+import ColorPaletteIcon from "../ColorPaletteIcon.js";
 import BinNote from "./BinNote.js";
 import ArchiveNote from "./ArchiveNote.js";
+import Pinned from "./Pinned.js";
+import Unpinned from "./Unpinned.js";
+import SaveNote from "./SaveNote.js";
+import Label from "./Label.js";
+import ColorPalette from "./ColorPalette.js";
+import { useState } from "react";
 
 export default function Toolbar() {
+  const [show, setShow] = useState(false);
+  function change() {
+    setShow((prev) => !prev);
+  }
   return (
-    <div className="flex gap-4">
-      <ColorPalette />
-      <BinNote />
-      <ArchiveNote />
-    </div>
+    <>
+      {show && <ColorPalette />}
+      <div className="flex justify-between items-center mt-3">
+        <div className="flex gap-4">
+          <ColorPaletteIcon change={change} />
+          <BinNote />
+          <ArchiveNote />
+          <Label />
+          <Pinned />
+          {/* <Unpinned /> */}
+        </div>
+        <SaveNote />
+      </div>
+    </>
   );
 }
