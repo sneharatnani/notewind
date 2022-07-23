@@ -49,21 +49,26 @@ export default function NewNote() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="font-poppins w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <input
                     type="text"
                     placeholder="Title"
                     name="title"
                     value={newNote.title}
                     onChange={handleChange}
-                    className="border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg"
+                    className="font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg"
+                  />
+                  <input
+                    placeholder="Label"
+                    type="text"
+                    className="border-0 w-full tracking-wide focus:ring-0 block focus-visible:outline-none text-sm"
                   />
                   <textarea
                     placeholder="Start Here..."
                     name="body"
                     value={newNote.body}
                     onChange={handleChange}
-                    className="border-0 focus:ring-0 min-h-[8rem] resize-none focus-visible:outline-none w-full block"
+                    className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block"
                   />
                   <Toolbar />
                 </Dialog.Panel>

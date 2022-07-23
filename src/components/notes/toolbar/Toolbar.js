@@ -4,7 +4,6 @@ import ArchiveNote from "./ArchiveNote.js";
 import Pinned from "./Pinned.js";
 import Unpinned from "./Unpinned.js";
 import SaveNote from "./SaveNote.js";
-import Label from "./Label.js";
 import ColorPalette from "./ColorPalette.js";
 import { useState } from "react";
 
@@ -21,7 +20,6 @@ export default function Toolbar() {
           <ColorPaletteIcon change={change} />
           <BinNote />
           <ArchiveNote />
-          <Label />
           <Pinned />
           {/* <Unpinned /> */}
         </div>

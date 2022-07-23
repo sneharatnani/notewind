@@ -1,9 +1,8 @@
-import menuIcon from "../../assets/menu.svg";
-import xIcon from "../../assets/x.svg";
-import searchIcon from "../../assets/search.svg";
+import menuIcon from "../../assets/icons/menu.svg";
+import xIcon from "../../assets/icons/x.svg";
+import searchIcon from "../../assets/icons/search.svg";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
 import Logo from "./Logo.js";
 import Profile from "./Profile.js";
 import NavLinks from "./NavLinks.js";

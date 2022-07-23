@@ -7,7 +7,11 @@ module.exports = {
       lg: "993px",
       xl: "1281px",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: "'Poppins','sans - serif'",
+      },
+    },
   },
   plugins: [require("@tailwindcss/forms")],
 };

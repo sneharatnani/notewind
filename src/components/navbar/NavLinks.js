@@ -22,7 +22,7 @@ export default function NavLinks() {
       </StyledNavLink>
       <StyledNavLink path="/">
         <Label />
-        Shoppingllllllllllllllllllllllllllllllllllllllllllllll
+        Shopping
       </StyledNavLink>
     </>
   );

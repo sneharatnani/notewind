@@ -21,12 +21,16 @@ function App() {
     return () => unsub();
   }, []);
 
-  return loading ? (
-    <Spinner />
-  ) : user ? (
-    <AuthenticatedApp />
-  ) : (
-    <UnauthenticatedApp />
+  return (
+    <div className="font-poppins font-normal tracking-wide">
+      {loading ? (
+        <Spinner />
+      ) : user ? (
+        <AuthenticatedApp />
+      ) : (
+        <UnauthenticatedApp />
+      )}
+    </div>
   );
 }
 
