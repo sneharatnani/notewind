@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     screens: {
       sm: "481px",
@@ -16,6 +17,9 @@ module.exports = {
         "2col": "repeat(2,1fr)",
         "3col": "repeat(3,1fr)",
         "4col": "repeat(4,1fr)",
+      },
+      colors: {
+        darkModeColor: "#202124",
       },
     },
   },

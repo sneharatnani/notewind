@@ -7,7 +7,7 @@ export default function Note(props) {
 
   return (
     <div
-      className="w-full rounded-lg p-4 border border-gray-200 max-h-60 overflow-hidden box-border"
+      className="w-full rounded-lg p-4 border border-gray-200 max-h-60 overflow-hidden box-border dark:border-zinc-500"
       onClick={findNewlines}
     >
       <p className="font-medium text-lg">{title}</p>

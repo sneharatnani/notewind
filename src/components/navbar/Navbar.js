@@ -103,7 +103,7 @@ export default function Navbar({ changeLayout }) {
               <span className="sr-only">Open sidebar</span>
               <img src={menuIcon} className="h-6 w-6" aria-hidden="true" />
             </button>
-            <div className="flex-1 px-4 flex justify-between">
+            <div className="flex-1 px-4 flex justify-between ">
               <div className="flex-1 flex">
                 <form className="w-full flex md:ml-0" action="#" method="GET">
                   <label htmlFor="search-field" className="sr-only">

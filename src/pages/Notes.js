@@ -9,7 +9,10 @@ export default function Notes({ isGrid }) {
   return (
     <>
       <NewNote />
-      <AllNotes isGrid={isGrid} />
+
+      <div className="min-h-[90vh] dark:bg-darkModeColor dark:text-white">
+        <AllNotes isGrid={isGrid} />
+      </div>
     </>
   );
 }
