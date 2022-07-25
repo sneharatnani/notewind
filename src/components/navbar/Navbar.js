@@ -7,7 +7,7 @@ import Logo from "./Logo.js";
 import Profile from "./Profile.js";
 import NavLinks from "./NavLinks.js";
 
-export default function Navbar() {
+export default function Navbar({ changeLayout }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
             <button
               type="button"
-              className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+              className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none md:hidden"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
@@ -129,7 +129,7 @@ export default function Navbar() {
               </div>
               <div className="ml-4 flex items-center md:ml-6">
                 {/* Profile dropdown */}
-                <Profile />
+                <Profile changeLayout={changeLayout} />
               </div>
             </div>
           </div>

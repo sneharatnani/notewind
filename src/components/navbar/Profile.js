@@ -2,7 +2,7 @@ import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { UserContext } from "../../context/UserContext.js";
 
-export default function Profile() {
+export default function Profile({ changeLayout }) {
   const { logOutUser, user } = useContext(UserContext);
 
   return (
@@ -30,7 +30,10 @@ export default function Profile() {
           <p className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Switch Theme
           </p>
-          <p className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <p
+            className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            onClick={changeLayout}
+          >
             Change Layout
           </p>{" "}
           <p
