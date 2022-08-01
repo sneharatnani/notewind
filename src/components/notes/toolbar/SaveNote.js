@@ -1,6 +1,11 @@
-export default function SaveNote() {
+export default function SaveNote({ createNewNote, closeModal }) {
   return (
-    <button>
+    <button
+      onClick={() => {
+        createNewNote();
+        closeModal();
+      }}
+    >
       <svg
         className="h-6 w-6 stroke-sky-500"
         fill="none"

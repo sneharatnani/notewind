@@ -7,7 +7,7 @@ import SaveNote from "./SaveNote.js";
 import ColorPalette from "./ColorPalette.js";
 import { useState } from "react";
 
-export default function Toolbar() {
+export default function Toolbar({ createNewNote, closeModal }) {
   const [show, setShow] = useState(false);
   function change() {
     setShow((prev) => !prev);
@@ -23,7 +23,7 @@ export default function Toolbar() {
           <Pinned />
           {/* <Unpinned /> */}
         </div>
-        <SaveNote />
+        <SaveNote createNewNote={createNewNote} closeModal={closeModal} />
       </div>
     </>
   );

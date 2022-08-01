@@ -1,11 +1,9 @@
 import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { UserContext } from "../../context/UserContext.js";
-import { ThemeContext } from "../../context/ThemeContext.js";
 
 export default function Profile({ changeLayout }) {
   const { logOutUser, user } = useContext(UserContext);
-  const { changeTheme } = useContext(ThemeContext);
 
   return (
     <Menu as="div" className="ml-3 relative">
@@ -29,12 +27,6 @@ export default function Profile({ changeLayout }) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <p
-            className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            onClick={changeTheme}
-          >
-            Switch Theme
-          </p>
           <p
             className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             onClick={changeLayout}

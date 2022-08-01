@@ -5,7 +5,6 @@ import UnauthenticatedApp from "./section/UnauthenticatedApp.js";
 import Spinner from "./components/Spinner.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config.js";
-import ThemeContextProvider from "./context/ThemeContext.js";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -23,17 +22,15 @@ function App() {
   }, []);
 
   return (
-    <ThemeContextProvider>
-      <div className="font-poppins font-normal tracking-wide">
-        {loading ? (
-          <Spinner />
-        ) : user ? (
-          <AuthenticatedApp />
-        ) : (
-          <UnauthenticatedApp />
-        )}
-      </div>
-    </ThemeContextProvider>
+    <div className="font-poppins font-normal tracking-wide">
+      {loading ? (
+        <Spinner />
+      ) : user ? (
+        <AuthenticatedApp />
+      ) : (
+        <UnauthenticatedApp />
+      )}
+    </div>
   );
 }
 
