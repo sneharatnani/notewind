@@ -1,8 +1,9 @@
-export default function Label() {
+export default function Label({ svgProps }) {
   return (
     <svg
       stroke="currentColor"
-      className="fill-white h-6 w-6 mr-4 flex-shrink-0"
+      fill="currentColor"
+      className={svgProps}
       strokeWidth="0"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

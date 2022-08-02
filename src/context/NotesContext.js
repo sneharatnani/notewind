@@ -13,6 +13,16 @@ export const NotesContext = createContext();
 
 export default function NotesContextProvider({ children }) {
   const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState({
+    title: "",
+    body: "",
+    label: "",
+    archived: false,
+    author: "",
+    bg: "bg-white",
+    deleted: false,
+    pinned: false,
+  });
   const notesRef = collection(db, "notes");
 
   useEffect(() => {
@@ -53,7 +63,7 @@ export default function NotesContextProvider({ children }) {
 
   return (
     <NotesContext.Provider
-      value={{ notes, addNewNote, updateNote, deleteNote }}
+      value={{ notes, addNewNote, updateNote, deleteNote, newNote, setNewNote }}
     >
       {children}
     </NotesContext.Provider>

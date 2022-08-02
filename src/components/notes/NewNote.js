@@ -3,18 +3,28 @@ import { Fragment, useContext, useState } from "react";
 import Pencil from "./Pencil.js";
 import Toolbar from "./toolbar/Toolbar.js";
 import { NotesContext } from "../../context/NotesContext.js";
+import { UserContext } from "../../context/UserContext.js";
 
 export default function NewNote() {
   const [isOpen, setIsOpen] = useState(false);
-  const [newNote, setNewNote] = useState({ title: "", body: "", label: "" });
-  const { addNewNote } = useContext(NotesContext);
+  const { user } = useContext(UserContext);
+  const { newNote, setNewNote, addNewNote } = useContext(NotesContext);
 
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal() {
-    setNewNote({ title: "", body: "", label: "" });
+    setNewNote({
+      title: "",
+      body: "",
+      label: "",
+      archived: false,
+      author: user.uid,
+      bg: "bg-white",
+      deleted: false,
+      pinned: false,
+    });
     setIsOpen(true);
   }
 
@@ -58,7 +68,9 @@ export default function NewNote() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="font-poppins bg-white w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel
+                  className={`font-poppins w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${newNote.bg}`}
+                >
                   <input
                     type="text"
                     placeholder="Title"

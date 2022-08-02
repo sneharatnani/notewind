@@ -1,14 +1,28 @@
 import Note from "./Note.js";
 import { NotesContext } from "../../context/NotesContext.js";
 import { useContext } from "react";
+import NoteLabel from "./NoteLabel.js";
+import { UserContext } from "../../context/UserContext.js";
 
 export default function AllNotes({ isGrid }) {
   const { notes } = useContext(NotesContext);
-  console.log(notes);
+  const { user } = useContext(UserContext);
 
-  const allNotes = notes.map((note) => (
-    <Note title={note.title} body={note.body} key={note.id} />
-  ));
+  function getAllLabels(label) {
+    if (label !== "") {
+      return <NoteLabel>{label}</NoteLabel>;
+    }
+  }
+
+  // render user specific notes only which is not archived or binned
+  const allNotes = notes
+    .filter(
+      (n) =>
+        n.author === user.uid && n.archived === false && n.deleted === false
+    )
+    .map((note) => (
+      <Note {...note} labels={getAllLabels(note.label)} key={note.id} />
+    ));
 
   return (
     <div
