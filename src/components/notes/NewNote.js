@@ -10,10 +10,6 @@ export default function NewNote() {
   const { user } = useContext(UserContext);
   const { newNote, setNewNote, addNewNote } = useContext(NotesContext);
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   function openModal() {
     setNewNote({
       title: "",
@@ -28,15 +24,17 @@ export default function NewNote() {
     setIsOpen(true);
   }
 
+  function closeModal() {
+    if (newNote.body !== "" || newNote.title !== "") {
+      addNewNote(newNote);
+      setIsOpen(false);
+    }
+    setIsOpen(false);
+  }
+
   function handleChange(e) {
     const { name, value } = e.target;
     setNewNote((prevState) => ({ ...prevState, [name]: value }));
-  }
-
-  function createNewNote() {
-    if (newNote.body !== "" || newNote.title !== "") {
-      addNewNote(newNote);
-    }
   }
 
   return (
@@ -94,10 +92,7 @@ export default function NewNote() {
                     onChange={handleChange}
                     className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block bg-transparent"
                   />
-                  <Toolbar
-                    createNewNote={createNewNote}
-                    closeModal={closeModal}
-                  />
+                  <Toolbar closeModal={closeModal} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

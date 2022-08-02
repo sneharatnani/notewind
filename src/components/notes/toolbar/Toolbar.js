@@ -7,7 +7,7 @@ import Archive from "../../../assets/icons/Archive.js";
 import Check from "../../../assets/icons/Check.js";
 import BinNote from "./BinNote.js";
 
-export default function Toolbar({ createNewNote, closeModal }) {
+export default function Toolbar({ closeModal }) {
   const [show, setShow] = useState(false);
 
   function handleChange() {
@@ -23,7 +23,7 @@ export default function Toolbar({ createNewNote, closeModal }) {
             <ColorPaletteIcon />
           </button>
 
-          <BinNote />
+          <BinNote closeModal={closeModal} />
 
           <button
             className="hover:text-gray-500/80"
@@ -49,7 +49,6 @@ export default function Toolbar({ createNewNote, closeModal }) {
 
         <button
           onClick={() => {
-            createNewNote();
             closeModal();
           }}
         >
