@@ -40,7 +40,9 @@ export default function NotesContextProvider({ children }) {
   useEffect(() => {
     async function deleteNote() {
       try {
-        await addNewNote(newNote);
+        if (newNote.body !== "" || newNote.title !== "") {
+          await addNewNote(newNote);
+        }
       } catch (error) {
         console.error(error);
       }

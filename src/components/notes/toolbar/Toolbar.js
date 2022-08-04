@@ -23,7 +23,7 @@ export default function Toolbar({ closeModal, createNewNote }) {
             <ColorPaletteIcon />
           </button>
 
-          <BinNote closeModal={closeModal} createNewNote={createNewNote} />
+          <BinNote closeModal={closeModal} />
 
           <ArchiveNote closeModal={closeModal} createNewNote={createNewNote} />
 
