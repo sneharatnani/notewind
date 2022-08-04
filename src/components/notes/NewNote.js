@@ -25,11 +25,13 @@ export default function NewNote() {
   }
 
   function closeModal() {
+    setIsOpen(false);
+  }
+
+  function createNewNote() {
     if (newNote.body !== "" || newNote.title !== "") {
       addNewNote(newNote);
-      setIsOpen(false);
     }
-    setIsOpen(false);
   }
 
   function handleChange(e) {
@@ -92,7 +94,10 @@ export default function NewNote() {
                     onChange={handleChange}
                     className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block bg-transparent"
                   />
-                  <Toolbar closeModal={closeModal} />
+                  <Toolbar
+                    closeModal={closeModal}
+                    createNewNote={createNewNote}
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

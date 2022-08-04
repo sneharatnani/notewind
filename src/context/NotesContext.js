@@ -12,7 +12,10 @@ import { createContext, useState, useEffect } from "react";
 export const NotesContext = createContext();
 
 export default function NotesContextProvider({ children }) {
+  const notesRef = collection(db, "notes");
   const [notes, setNotes] = useState([]);
+
+  const [deleteNewNote, setNewDeleteNote] = useState(false);
   const [newNote, setNewNote] = useState({
     title: "",
     body: "",
@@ -23,7 +26,6 @@ export default function NotesContextProvider({ children }) {
     deleted: false,
     pinned: false,
   });
-  const notesRef = collection(db, "notes");
 
   useEffect(() => {
     const unsubscribe = () =>
@@ -34,6 +36,22 @@ export default function NotesContextProvider({ children }) {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    async function deleteNote() {
+      try {
+        await addNewNote(newNote);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    if (deleteNewNote) {
+      deleteNote().finally(() => {
+        setNewDeleteNote(false);
+      });
+    }
+  }, [deleteNewNote]);
 
   async function addNewNote(newNote) {
     try {
@@ -63,7 +81,15 @@ export default function NotesContextProvider({ children }) {
 
   return (
     <NotesContext.Provider
-      value={{ notes, addNewNote, updateNote, deleteNote, newNote, setNewNote }}
+      value={{
+        notes,
+        addNewNote,
+        updateNote,
+        deleteNote,
+        newNote,
+        setNewNote,
+        setNewDeleteNote,
+      }}
     >
       {children}
     </NotesContext.Provider>

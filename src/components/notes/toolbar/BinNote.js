@@ -3,11 +3,15 @@ import Bin from "../../../assets/icons/Bin.js";
 import { NotesContext } from "../../../context/NotesContext.js";
 
 export default function BinNote(props) {
-  const { closeModal } = props;
-  const { setNewNote } = useContext(NotesContext);
+  const { closeModal, createNewNote } = props;
+  const { newNote, setNewNote, addNewNote, setNewDeleteNote } =
+    useContext(NotesContext);
 
   function deleteNote() {
     setNewNote((prevNote) => ({ ...prevNote, deleted: true }));
+
+    setNewDeleteNote(true);
+
     closeModal();
   }
 

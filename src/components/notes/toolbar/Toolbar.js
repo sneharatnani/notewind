@@ -3,11 +3,11 @@ import Pinned from "../../../assets/icons/Pinned.js";
 import Unpinned from "../../../assets/icons/Unpinned.js";
 import ColorPalette from "./ColorPalette.js";
 import { useState } from "react";
-import Archive from "../../../assets/icons/Archive.js";
+import ArchiveNote from "./ArchiveNote.js";
 import Check from "../../../assets/icons/Check.js";
 import BinNote from "./BinNote.js";
 
-export default function Toolbar({ closeModal }) {
+export default function Toolbar({ closeModal, createNewNote }) {
   const [show, setShow] = useState(false);
 
   function handleChange() {
@@ -23,14 +23,9 @@ export default function Toolbar({ closeModal }) {
             <ColorPaletteIcon />
           </button>
 
-          <BinNote closeModal={closeModal} />
+          <BinNote closeModal={closeModal} createNewNote={createNewNote} />
 
-          <button
-            className="hover:text-gray-500/80"
-            onClick={() => console.log("archived")}
-          >
-            <Archive svgProps="h-5 w-5" />
-          </button>
+          <ArchiveNote closeModal={closeModal} createNewNote={createNewNote} />
 
           <button
             className="hover:text-gray-500/80"
@@ -49,6 +44,7 @@ export default function Toolbar({ closeModal }) {
 
         <button
           onClick={() => {
+            createNewNote();
             closeModal();
           }}
         >
