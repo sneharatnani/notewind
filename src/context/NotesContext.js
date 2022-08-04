@@ -14,7 +14,6 @@ export const NotesContext = createContext();
 export default function NotesContextProvider({ children }) {
   const notesRef = collection(db, "notes");
   const [notes, setNotes] = useState([]);
-
   const [deleteNewNote, setNewDeleteNote] = useState(false);
   const [newNote, setNewNote] = useState({
     title: "",
