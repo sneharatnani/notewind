@@ -14,18 +14,7 @@ export const NotesContext = createContext();
 export default function NotesContextProvider({ children }) {
   const notesRef = collection(db, "notes");
   const [notes, setNotes] = useState([]);
-  const [deleteNewNote, setNewDeleteNote] = useState(false);
-  const [newNote, setNewNote] = useState({
-    title: "",
-    body: "",
-    label: "",
-    archived: false,
-    author: "",
-    bg: "bg-white",
-    deleted: false,
-    pinned: false,
-  });
-
+    
   useEffect(() => {
     const unsubscribe = () =>
       onSnapshot(notesRef, (snapshot) => {
@@ -35,24 +24,6 @@ export default function NotesContextProvider({ children }) {
 
     return () => unsubscribe();
   }, []);
-
-  useEffect(() => {
-    async function deleteNote() {
-      try {
-        if (newNote.body !== "" || newNote.title !== "") {
-          await addNewNote(newNote);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    if (deleteNewNote) {
-      deleteNote().finally(() => {
-        setNewDeleteNote(false);
-      });
-    }
-  }, [deleteNewNote]);
 
   async function addNewNote(newNote) {
     try {
@@ -87,9 +58,6 @@ export default function NotesContextProvider({ children }) {
         addNewNote,
         updateNote,
         deleteNote,
-        newNote,
-        setNewNote,
-        setNewDeleteNote,
       }}
     >
       {children}

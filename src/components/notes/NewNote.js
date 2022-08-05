@@ -2,14 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
 import Pencil from "./Pencil.js";
 import Toolbar from "./toolbar/Toolbar.js";
-import { NotesContext } from "../../context/NotesContext.js";
-import { UserContext } from "../../context/UserContext.js";
+import { UserContext } from "../../context/userContext.js";
+import { NewNoteContext } from "../../context/newNoteContext.js";
 
 export default function NewNote() {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(UserContext);
-  const { newNote, setNewNote, addNewNote } = useContext(NotesContext);
-
+  const { setNewNote, createNewNote,newNote } = useContext(NewNoteContext);
+  
   function openModal() {
     setNewNote({
       title: "",
@@ -26,12 +26,6 @@ export default function NewNote() {
 
   function closeModal() {
     setIsOpen(false);
-  }
-
-  function createNewNote() {
-    if (newNote.body !== "" || newNote.title !== "") {
-      addNewNote(newNote);
-    }
   }
 
   function handleChange(e) {

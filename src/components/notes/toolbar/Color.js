@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { NotesContext } from "../../../context/NotesContext.js";
+import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function Color({ bg }) {
-  const { setNewNote } = useContext(NotesContext);
+  const { setNewNote } = useContext(NewNoteContext);
 
   return (
     <span

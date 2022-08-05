@@ -1,16 +1,14 @@
 import { useContext } from "react";
 import Bin from "../../../assets/icons/Bin.js";
-import { NotesContext } from "../../../context/NotesContext.js";
+import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function BinNote(props) {
   const { closeModal } = props;
-  const { setNewNote, setNewDeleteNote } = useContext(NotesContext);
+  const { setNewNote, setIsDeleted } = useContext(NewNoteContext);
 
   function deleteNote() {
     setNewNote((prevNote) => ({ ...prevNote, deleted: true }));
-
-    setNewDeleteNote(true);
-
+    setIsDeleted(true);
     closeModal();
   }
 

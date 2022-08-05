@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { UserContext } from "../../context/UserContext.js";
+import { UserContext } from "../../context/userContext.js";
 
 export default function Profile({ changeLayout }) {
   const { logOutUser, user } = useContext(UserContext);

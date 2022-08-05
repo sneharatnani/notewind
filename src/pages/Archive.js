@@ -6,7 +6,7 @@ export default function Archive() {
   const notes = useNotesData();
 
   const archivedNotes = notes
-    .filter((note) => note.archived === true)
+    .filter((note) => note.archived === true && note.deleted === false)
     .map((n) => <Note {...n} labels={NoteLabel(n.label)} key={n.id} />);
 
   return archivedNotes;

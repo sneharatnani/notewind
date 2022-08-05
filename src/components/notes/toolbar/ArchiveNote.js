@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import Archive from "../../../assets/icons/Archive.js";
-import { NotesContext } from "../../../context/NotesContext.js";
+import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function ArchiveNote(props) {
-  const { closeModal, createNewNote } = props;
-  const { setNewNote } = useContext(NotesContext);
+  const { closeModal} = props;
+  const { setNewNote, setIsArchived } = useContext(NewNoteContext);
 
   function archiveNote() {
     setNewNote((prevNote) => ({ ...prevNote, archived: !prevNote.archived }));
-    createNewNote();
+    setIsArchived(true);
     closeModal();
   }
 
