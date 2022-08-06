@@ -19,7 +19,8 @@ module.exports = {
         "4col": "repeat(4,1fr)",
       },
       colors: {
-        darkModeColor: "#202124",
+        labelColor: "rgba(0,0,0,.08)",
+        labelTextColor: "#3c4043",
       },
     },
   },

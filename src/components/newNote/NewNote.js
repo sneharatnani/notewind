@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
-import Pencil from "./Pencil.js";
+import Pencil from "../Pencil.js";
 import Toolbar from "./toolbar/Toolbar.js";
 import { UserContext } from "../../context/userContext.js";
 import { NewNoteContext } from "../../context/newNoteContext.js";

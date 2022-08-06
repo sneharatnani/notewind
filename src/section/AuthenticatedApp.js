@@ -16,19 +16,11 @@ export default function AuthenticatedApp() {
     <>
       <Navbar changeLayout={changeLayout} />
       <section className="md:pl-64">
-        <div
-          className={
-            isGrid
-              ? "pt-4 px-2 grid grid-cols-2col justify-center gap-4 sm:grid-cols-3col md:px-4 md:grid-cols-2col lg:grid-cols-3col xl:grid-cols-4col"
-              : "pt-4 px-4 grid grid-cols-1col justify-center gap-y-4 sm:px-8 lg:px-10 xl:px-16"
-          }
-        >
-          <Routes>
-            <Route path="/" element={<Notes />} />
-            <Route path="/bin" element={<Bin />} />
-            <Route path="/archive" element={<Archive />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Notes isGrid={isGrid} />} />
+          <Route path="/bin" element={<Bin isGrid={isGrid} />} />
+          <Route path="/archive" element={<Archive isGrid={isGrid} />} />
+        </Routes>
       </section>
     </>
   );
