@@ -1,10 +1,11 @@
 import UnArchive from "../../assets/icons/UnArchive.js";
 import Bin from "../../assets/icons/Bin.js";
 import { NotesContext } from "../../context/notesContext.js";
+import NoteLabel from "./NoteLabel.js";
 import { useContext } from "react";
 
 export default function ArchivedNote(props) {
-  const { title, body, labels, bg,id} = props;
+  const { title, body, label, bg,id} = props;
     const { updateNote } = useContext(NotesContext);
     
   return (
@@ -19,7 +20,9 @@ export default function ArchivedNote(props) {
           {body}
         </p>
       </div>
-      <div className="flex gap-2 flex-wrap mt-2">{labels}</div>
+      <div className="flex gap-2 flex-wrap mt-2">
+        <NoteLabel label={label} />
+      </div>
       <div className="invisible gap-x-4 mt-3 text-gray-600 flex group-hover:visible">
         <button onClick={() => updateNote(id, { archived: false })}>
           <UnArchive svgProps="h-4 w-4" />

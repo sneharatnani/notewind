@@ -2,9 +2,10 @@ import { useContext } from "react";
 import DeleteForever from "../../assets/icons/DeleteForever.js";
 import Restore from "../../assets/icons/Restore.js";
 import { NotesContext } from "../../context/notesContext.js";
+import NoteLabel from "./NoteLabel.js";
 
 export default function DeletedNote(props) {
-    const { title, body, labels, bg, id } = props;
+    const { title, body, label, bg, id } = props;
     const { deleteNote, updateNote } = useContext(NotesContext);
 
   return (
@@ -19,12 +20,14 @@ export default function DeletedNote(props) {
           {body}
         </p>
       </div>
-      <div className="flex gap-2 flex-wrap mt-2">{labels}</div>
+      <div className="flex gap-2 flex-wrap mt-2">
+        <NoteLabel label={label} />
+      </div>
       <div className="invisible gap-x-4 mt-3 text-gray-600 flex group-hover:visible">
-        <button onClick={()=> deleteNote(id)}>
-          <DeleteForever svgProps="h-[1.1rem] w-[1.1rem]"/>
+        <button onClick={() => deleteNote(id)}>
+          <DeleteForever svgProps="h-[1.1rem] w-[1.1rem]" />
         </button>
-        <button onClick={()=> updateNote(id,{deleted:false})}>
+        <button onClick={() => updateNote(id, { deleted: false })}>
           <Restore svgProps="h-[1.1rem] w-[1.1rem]" />
         </button>
       </div>

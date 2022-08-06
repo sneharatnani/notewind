@@ -1,7 +1,6 @@
 import NewNote from "../components/newNote/NewNote.js";
 import useNotesData from "../hooks/useNotesData.js";
 import Note from "../components/note/Note.js";
-import NoteLabel from "../components/note/NoteLabel.js";
 
 export default function Notes({isGrid}) {
   const notes = useNotesData();
@@ -11,14 +10,14 @@ export default function Notes({isGrid}) {
        (n) => n.archived === false && n.deleted === false && n.pinned === true
      )
      .map((note) => (
-       <Note {...note} labels={NoteLabel(note.label)} key={note.id} />
+       <Note {...note} label={note.label} key={note.id} />
      ));
 
   const others = notes
-    .filter((n) => n.archived === false && n.deleted === false && n.pinned === false)
-    .map((note) => (
-      <Note {...note} labels={NoteLabel(note.label)} key={note.id} />
-    ));
+    .filter(
+      (n) => n.archived === false && n.deleted === false && n.pinned === false
+    )
+    .map((note) => <Note {...note} label={note.label} key={note.id} />);
 
   return (
     <>
