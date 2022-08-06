@@ -1,4 +1,4 @@
-import Note from "../components/note/Note.js";
+import ArchivedNote from "../components/note/ArchivedNote.js";
 import NoteLabel from "../components/note/NoteLabel.js";
 import useNotesData from "../hooks/useNotesData.js";
 
@@ -7,7 +7,7 @@ export default function Archive({isGrid}) {
 
   const archivedNotes = notes
     .filter((note) => note.archived === true && note.deleted === false)
-    .map((n) => <Note {...n} labels={NoteLabel(n.label)} key={n.id} />);
+    .map((n) => <ArchivedNote {...n} labels={NoteLabel(n.label)} key={n.id} />);
 
   return (
     <div

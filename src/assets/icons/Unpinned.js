@@ -1,9 +1,9 @@
-export default function Unpinned() {
+export default function Unpinned({ svgProps}) {
   return (
     <svg
       stroke="currentColor"
       fill="currentColor"
-      className="h-5 w-5"
+      className={svgProps}
       strokeWidth="0"
       viewBox="0 0 16 16"
       xmlns="http://www.w3.org/2000/svg"

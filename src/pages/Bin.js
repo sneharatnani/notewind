@@ -1,5 +1,5 @@
 import useNotesData from "../hooks/useNotesData.js";
-import Note from "../components/note/Note.js";
+import DeletedNote from "../components/note/DeletedNote.js";
 import NoteLabel from "../components/note/NoteLabel.js";
 
 export default function Bin({isGrid}) {
@@ -7,7 +7,7 @@ export default function Bin({isGrid}) {
 
   const deletedNotes = notes
     .filter((note) => note.deleted === true)
-    .map((n) => <Note {...n} labels={NoteLabel(n.label)} key={n.id} />);
+    .map((n) => <DeletedNote {...n} labels={NoteLabel(n.label)} key={n.id} />);
 
   return (
     <div

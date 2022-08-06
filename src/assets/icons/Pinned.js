@@ -1,8 +1,8 @@
-export default function Pinned() {
+export default function Pinned({ svgProps }) {
   return (
     <svg
       stroke="currentColor"
-      className="h-5 w-5"
+      className={svgProps}
       fill="currentColor"
       strokeWidth="0"
       viewBox="0 0 16 16"

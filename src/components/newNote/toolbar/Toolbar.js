@@ -24,7 +24,7 @@ export default function Toolbar({ closeModal, createNewNote }) {
             <ColorPaletteIcon />
           </button>
           <BinNote closeModal={closeModal} />
-          <ArchiveNote closeModal={closeModal} createNewNote={createNewNote} />
+          <ArchiveNote closeModal={closeModal}/>
           <PinNote/>
         </div>
 
