@@ -7,7 +7,7 @@ import Logo from "./Logo.js";
 import Profile from "./Profile.js";
 import NavLinks from "./NavLinks.js";
 
-export default function Navbar({ changeLayout }) {
+export default function Navbar({ changeLayout}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -60,6 +60,7 @@ export default function Navbar({ changeLayout }) {
                         <span className="sr-only">Close sidebar</span>
                         <img
                           src={xIcon}
+                          alt='cross'
                           className="h-6 w-6 text-white"
                           aria-hidden="true"
                         />
@@ -75,15 +76,12 @@ export default function Navbar({ changeLayout }) {
                 </Dialog.Panel>
               </Transition.Child>
               <div className="flex-shrink-0 w-14" aria-hidden="true">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>
             </div>
           </Dialog>
         </Transition.Root>
-
-        {/* Static sidebar for desktop */}
         <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
+          {/* Sidebar component */}
           <div className="flex flex-col flex-grow pt-5 bg-sky-400 overflow-y-auto">
             <Logo />
             <div className="mt-5 flex-1 flex flex-col">
@@ -101,7 +99,7 @@ export default function Navbar({ changeLayout }) {
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
-              <img src={menuIcon} className="h-6 w-6" aria-hidden="true" />
+              <img src={menuIcon} alt='menu icon' className="h-6 w-6" aria-hidden="true" />
             </button>
             <div className="flex-1 px-4 flex justify-between ">
               <div className="flex-1 flex">
@@ -113,6 +111,7 @@ export default function Navbar({ changeLayout }) {
                     <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                       <img
                         src={searchIcon}
+                        alt='search icon'
                         className="h-5 w-5"
                         aria-hidden="true"
                       />

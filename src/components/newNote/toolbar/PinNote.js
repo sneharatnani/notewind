@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NewNoteContext } from "../../../context/newNoteContext.js";
-import Pinned from "../../../assets/icons/Pinned.js";
-import Unpinned from "../../../assets/icons/Unpinned.js";
+import Pinned from "../../../assets/icons/PinIcon.js";
+import Unpinned from "../../../assets/icons/UnpinIcon.js";
 
 export default function PinNote() {
     const { setNewNote,newNote } = useContext(NewNoteContext);
@@ -14,9 +14,9 @@ export default function PinNote() {
         }
       >
         {newNote.pinned ? (
-          <Pinned svgProps="h-5 w-5" />
+          <Pinned />
         ) : (
-          <Unpinned svgProps="h-5 w-5" />
+          <Unpinned />
         )}
       </button>
     );

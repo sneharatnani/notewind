@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Bin from "../../../assets/icons/Bin.js";
+import Bin from "../../../assets/icons/BinIcon.js";
 import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function BinNote(props) {

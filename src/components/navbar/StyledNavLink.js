@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function StyledNavLink({ path, children }) {
+export default function StyledNavLink({ path, children}) {
   return (
     <Link
       to={path}

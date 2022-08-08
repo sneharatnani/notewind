@@ -1,9 +1,9 @@
-export default function NoteIcon({ svgProps }) {
+export default function NoteIcon() {
   return (
     <svg
       stroke="currentColor"
       fill="currentColor"
-      className={svgProps}
+      className="mr-4 flex-shrink-0 h-6 w-6"
       strokeWidth="0"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

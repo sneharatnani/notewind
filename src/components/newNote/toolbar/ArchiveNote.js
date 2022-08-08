@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Archive from "../../../assets/icons/Archive.js";
+import Archive from "../../../assets/icons/ArchiveIcon.js";
 import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function ArchiveNote(props) {

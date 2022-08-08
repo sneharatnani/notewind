@@ -1,6 +1,6 @@
 import ColorPalette from "./ColorPalette.js";
 import ArchiveNote from "./ArchiveNote.js";
-import Check from "../../../assets/icons/Check.js";
+import Check from "../../../assets/icons/CheckIcon.js";
 import BinNote from "./BinNote.js";
 import PinNote from "./PinNote.js";
 

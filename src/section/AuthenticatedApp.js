@@ -7,14 +7,13 @@ import { useState } from "react";
 
 export default function AuthenticatedApp() {
   const [isGrid, setIsGrid] = useState(true);
-
   function changeLayout() {
     setIsGrid((prevState) => !prevState);
   }
 
   return (
     <>
-      <Navbar changeLayout={changeLayout} />
+      <Navbar changeLayout={changeLayout}/>
       <section className="md:pl-64">
         <Routes>
           <Route path="/" element={<Notes isGrid={isGrid} />} />

@@ -1,6 +1,6 @@
 import NoteLabel from "./NoteLabel.js";
 import {useState } from "react";
-import NotePreview from "../preview/NotePreview.js";
+import NotePreview from "../NotePreview.js";
 
 export default function Note(props) {
   const { title, body, label, bg} = props;

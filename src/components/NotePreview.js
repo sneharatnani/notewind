@@ -1,37 +1,37 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
-import { NotesContext } from "../../context/notesContext.js";
-import ColorPaletteIcon from '../../assets/icons/ColorPaletteIcon.js'
-import Check from "../../assets/icons/Check.js";
-import Bin from "../../assets/icons/Bin.js";
-import Archive from "../../assets/icons/Archive.js";
-import Pinned from "../../assets/icons/Pinned.js";
-import Unpinned from "../../assets/icons/Unpinned.js";
-import UnArchive from "../../assets/icons/UnArchive.js";
-import DeleteForever from "../../assets/icons/DeleteForever.js";
-import Restore from "../../assets/icons/Restore.js";
+import { NotesContext } from "../context/notesContext.js";
+import ColorPaletteIcon from '../assets/icons/ColorPaletteIcon.js'
+import Check from "../assets/icons/CheckIcon.js";
+import Bin from "../assets/icons/BinIcon.js";
+import Archive from "../assets/icons/ArchiveIcon.js";
+import Pinned from "../assets/icons/PinIcon.js";
+import Unpinned from "../assets/icons/UnpinIcon.js";
+import UnArchive from "../assets/icons/UnArchiveIcon.js";
+import DeleteForever from "../assets/icons/DeleteForeverIcon.js";
+import Restore from "../assets/icons/RestoreIcon.js";
 
 export default function NotePreview(props) {
     const { id, title, body, bg,label,pinned, deleted, archived,isOpen, setIsOpen} = props;
-  const { updateNote, deleteNote } = useContext(NotesContext);
-  const [showColors, setShowColors] = useState(false);
+    const { updateNote, deleteNote } = useContext(NotesContext);
+    const [showColors, setShowColors] = useState(false);
     const [note, setNote] = useState({
         title,
         body,
         bg,
-      label,
+        label,
     })
 
-    function setUpdatedNote() {
-        for (let key in note) {
-            updateNote(id, { [key]: note[key] })
-        }
-    }
+  function setUpdatedNote() {
+      for (let key in note) {
+          updateNote(id, { [key]: note[key] })
+       }
+   }
 
-    function closeModal() {
-        setUpdatedNote();
-        setIsOpen(false);
-    }
+  function closeModal() {
+      setUpdatedNote();
+      setIsOpen(false);
+  }
   
   function changeBg(bg) {
     setNote(prevNote=> ({...prevNote,bg}))
@@ -178,11 +178,7 @@ export default function NotePreview(props) {
                             setIsOpen(false);
                           }}
                         >
-                          {pinned ? (
-                            <Pinned svgProps="h-5 w-5" />
-                          ) : (
-                            <Unpinned svgProps="h-5 w-5" />
-                          )}
+                          {pinned ? <Pinned /> : <Unpinned />}
                         </button>
                       )}
                       {/* unarchive */}
@@ -194,7 +190,7 @@ export default function NotePreview(props) {
                             setIsOpen(false);
                           }}
                         >
-                          <UnArchive svgProps="h-5 w-5" />
+                          <UnArchive />
                         </button>
                       )}
                       {/* delete forever */}
@@ -206,7 +202,7 @@ export default function NotePreview(props) {
                             setIsOpen(false);
                           }}
                         >
-                          <DeleteForever svgProps="h-5 w-5" />
+                          <DeleteForever />
                         </button>
                       )}
                       {/* restore */}
@@ -218,7 +214,7 @@ export default function NotePreview(props) {
                             setIsOpen(false);
                           }}
                         >
-                          <Restore svgProps="h-5 w-5" />
+                          <Restore/>
                         </button>
                       )}
                     </div>

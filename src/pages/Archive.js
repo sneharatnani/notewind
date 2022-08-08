@@ -6,7 +6,7 @@ export default function Archive({isGrid}) {
 
   const archivedNotes = notes
     .filter((note) => note.archived === true && note.deleted === false)
-    .map((n) => <Note {...n} label={n.label} key={n.id} />);
+    .map((n) => <Note {...n} key={n.id} />);
 
   return (
     <div

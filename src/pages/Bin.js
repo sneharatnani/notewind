@@ -6,7 +6,7 @@ export default function Bin({isGrid}) {
 
   const deletedNotes = notes
     .filter((note) => note.deleted === true)
-    .map((n) => <Note {...n} label={n.label} key={n.id} />);
+    .map((n) => <Note {...n} key={n.id} />);
 
   return (
     <div
