@@ -1,8 +1,17 @@
 import Note from "../components/note/Note.js";
 import useNotesData from "../hooks/useNotesData.js";
 
-export default function Archive({isGrid}) {
+export default function Archive({ isGrid, searchValue }) {
   const notes = useNotesData();
+
+  const filteredNotes = notes
+    .filter(
+      (note) =>
+        note.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        note.body.toLowerCase().includes(searchValue.toLowerCase()) ||
+        note.label.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    .map((n) => <Note {...n} key={n.id} />);
 
   const archivedNotes = notes
     .filter((note) => note.archived === true && note.deleted === false)
@@ -16,7 +25,7 @@ export default function Archive({isGrid}) {
           : "pt-4 px-4 grid grid-cols-1col justify-center gap-y-4 sm:px-8 lg:px-10 xl:px-16"
       }
     >
-      {archivedNotes}
+      {searchValue ? filteredNotes : archivedNotes}
     </div>
   );
 }

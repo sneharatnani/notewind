@@ -7,18 +7,37 @@ import { useState } from "react";
 
 export default function AuthenticatedApp() {
   const [isGrid, setIsGrid] = useState(true);
+  const [searchValue, setSearchValue] = useState('');
+
   function changeLayout() {
     setIsGrid((prevState) => !prevState);
   }
 
   return (
     <>
-      <Navbar changeLayout={changeLayout}/>
+      <Navbar
+        changeLayout={changeLayout}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <section className="md:pl-64">
         <Routes>
-          <Route path="/" element={<Notes isGrid={isGrid} />} />
-          <Route path="/bin" element={<Bin isGrid={isGrid} />} />
-          <Route path="/archive" element={<Archive isGrid={isGrid} />} />
+          <Route
+            path="/"
+            element={<Notes isGrid={isGrid} searchValue={searchValue} />}
+          />
+          <Route
+            path="/bin"
+            element={<Bin isGrid={isGrid} searchValue={searchValue} />}
+          />
+          <Route
+            path="/archive"
+            element={<Archive isGrid={isGrid} searchValue={searchValue} />}
+          />
+          <Route
+            path="*"
+            element={<Notes isGrid={isGrid} searchValue={searchValue} />}
+          />
         </Routes>
       </section>
     </>
