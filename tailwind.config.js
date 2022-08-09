@@ -3,6 +3,7 @@ module.exports = {
   darkMode: "class",
   theme: {
     screens: {
+      xs: "361px",
       sm: "481px",
       md: "769px",
       lg: "993px",
