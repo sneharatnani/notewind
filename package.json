@@ -2,6 +2,7 @@
   "name": "notewind",
   "version": "0.1.0",
   "private": true,
+  "author": "Sneha Ratnani",
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "@testing-library/jest-dom": "^5.16.4",
