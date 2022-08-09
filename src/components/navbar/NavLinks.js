@@ -4,7 +4,6 @@ import Archive from "../../assets/icons/ArchiveIcon.js";
 import StyledNavLink from "./StyledNavLink.js";
 
 export default function NavLinks() {
-
   return (
     <>
       <StyledNavLink path="/">
@@ -19,7 +18,6 @@ export default function NavLinks() {
         <Bin svgProps="mr-4 flex-shrink-0 h-6 w-6" />
         Bin
       </StyledNavLink>
-   
     </>
   );
 }

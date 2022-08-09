@@ -2,33 +2,32 @@ import NewNote from "../components/newNote/NewNote.js";
 import useNotesData from "../hooks/useNotesData.js";
 import Note from "../components/note/Note.js";
 
-export default function Notes({isGrid,searchValue}) {
+export default function Notes({ isGrid, query }) {
   const notes = useNotesData();
+  const filtered = notes.filter(
+    (n) => n.archived === false && n.deleted === false
+  );
 
-  const filteredNotes = notes.filter(
-    (note) =>
-      note.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-      note.body.toLowerCase().includes(searchValue.toLowerCase()) ||
-      note.label.toLowerCase().includes(searchValue.toLowerCase())
-  ).map(n => <Note {...n} key={ n.id} />)
+  const pinnedNotes = filtered
+    .filter((note) => note.pinned === true)
+    .map((n) => <Note {...n} key={n.id} />);
 
-  const pinned = notes
-     .filter(
-       (n) => n.archived === false && n.deleted === false && n.pinned === true
-     )
-     .map((note) => (
-       <Note {...note} key={note.id} />
-     ));
+  const otherNotes = filtered
+    .filter((note) => note.pinned === false)
+    .map((n) => <Note {...n} key={n.id} />);
 
-  const others = notes
+  const searchedNotes = notes
     .filter(
-      (n) => n.archived === false && n.deleted === false && n.pinned === false
+      (note) =>
+        note.title.toLowerCase().includes(query.toLowerCase()) ||
+        note.body.toLowerCase().includes(query.toLowerCase()) ||
+        note.label.toLowerCase().includes(query.toLowerCase())
     )
-    .map((note) => <Note {...note} key={note.id} />);
+    .map((n) => <Note {...n} key={n.id} />);
 
   return (
     <>
-      {searchValue ? (
+      {query !== "" ? (
         <div
           className={
             isGrid
@@ -36,19 +35,21 @@ export default function Notes({isGrid,searchValue}) {
               : "pt-4 px-4 grid grid-cols-1col justify-center gap-y-4 sm:px-8 lg:px-10 xl:px-16"
           }
         >
-          {filteredNotes}
+          {searchedNotes}
         </div>
       ) : (
         <>
           <NewNote />
           <section>
-            <p
-              className={`text-xs font-medium text-gray-500 mb-2 pt-4 ${
-                isGrid ? "pl-6" : "text-center"
-              }`}
-            >
-              PINNED
-            </p>
+            {pinnedNotes.length !== 0 && (
+              <p
+                className={`text-xs font-medium text-gray-500 mb-2 pt-4 ${
+                  isGrid ? "pl-6" : "text-center"
+                }`}
+              >
+                PINNED
+              </p>
+            )}
             <div
               className={`mb-10 ${
                 isGrid
@@ -56,15 +57,17 @@ export default function Notes({isGrid,searchValue}) {
                   : "px-4 grid grid-cols-1col justify-center gap-y-4 sm:px-8 lg:px-10 xl:px-16"
               }`}
             >
-              {pinned}
+              {pinnedNotes}
             </div>
-            <p
-              className={`text-xs font-medium text-gray-500 mb-2 ${
-                isGrid ? "pl-6" : "text-center"
-              }`}
-            >
-              OTHERS
-            </p>
+            {pinnedNotes.length !== 0 && (
+              <p
+                className={`text-xs font-medium text-gray-500 mb-2 ${
+                  isGrid ? "pl-6" : "text-center"
+                }`}
+              >
+                OTHERS
+              </p>
+            )}
             <div
               className={
                 isGrid
@@ -72,7 +75,7 @@ export default function Notes({isGrid,searchValue}) {
                   : "px-4 grid grid-cols-1col justify-center gap-y-4 sm:px-8 lg:px-10 xl:px-16"
               }
             >
-              {others}
+              {otherNotes}
             </div>
           </section>
         </>

@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function AuthenticatedApp() {
   const [isGrid, setIsGrid] = useState(true);
-  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState("");
 
   function changeLayout() {
     setIsGrid((prevState) => !prevState);
@@ -15,29 +15,16 @@ export default function AuthenticatedApp() {
 
   return (
     <>
-      <Navbar
-        changeLayout={changeLayout}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+      <Navbar changeLayout={changeLayout} query={query} setQuery={setQuery} />
       <section className="md:pl-64">
         <Routes>
-          <Route
-            path="/"
-            element={<Notes isGrid={isGrid} searchValue={searchValue} />}
-          />
-          <Route
-            path="/bin"
-            element={<Bin isGrid={isGrid} searchValue={searchValue} />}
-          />
+          <Route path="/" element={<Notes isGrid={isGrid} query={query} />} />
+          <Route path="/bin" element={<Bin isGrid={isGrid} query={query} />} />
           <Route
             path="/archive"
-            element={<Archive isGrid={isGrid} searchValue={searchValue} />}
+            element={<Archive isGrid={isGrid} query={query} />}
           />
-          <Route
-            path="*"
-            element={<Notes isGrid={isGrid} searchValue={searchValue} />}
-          />
+          <Route path="*" element={<Notes isGrid={isGrid} query={query} />} />
         </Routes>
       </section>
     </>

@@ -1,7 +1,7 @@
 export default function Check() {
   return (
     <svg
-      className="h-6 w-6 stroke-sky-500"
+      className="h-6 w-6 stroke-zinc-600"
       fill="none"
       strokeWidth="2"
       viewBox="0 0 24 24"

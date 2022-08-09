@@ -1,6 +1,5 @@
 import menuIcon from "../../assets/icons/menu.svg";
-import xIcon from "../../assets/icons/x.svg";
-// import searchIcon from "../../assets/icons/search.svg";
+import XIcon from "../../assets/icons/XIcon.js";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Logo from "./Logo.js";
@@ -8,7 +7,7 @@ import Profile from "./Profile.js";
 import NavLinks from "./NavLinks.js";
 import SearchField from "./SearchField.js";
 
-export default function Navbar({ changeLayout,setSearchValue,searchValue}) {
+export default function Navbar({ changeLayout, setQuery, query }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -59,12 +58,7 @@ export default function Navbar({ changeLayout,setSearchValue,searchValue}) {
                         onClick={() => setSidebarOpen(false)}
                       >
                         <span className="sr-only">Close sidebar</span>
-                        <img
-                          src={xIcon}
-                          alt="cross"
-                          className="h-6 w-6 text-white"
-                          aria-hidden="true"
-                        />
+                        <XIcon props="h-6 w-6 stroke-white" />
                       </button>
                     </div>
                   </Transition.Child>
@@ -108,10 +102,7 @@ export default function Navbar({ changeLayout,setSearchValue,searchValue}) {
             </button>
             <div className="flex-1 px-4 flex justify-between ">
               <div className="flex-1 flex">
-                <SearchField
-                  setSearchValue={setSearchValue}
-                  searchValue={searchValue}
-                /> 
+                <SearchField setQuery={setQuery} query={query} />
               </div>
               <div className="ml-4 flex items-center md:ml-6">
                 {/* Profile dropdown */}
