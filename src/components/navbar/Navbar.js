@@ -8,7 +8,7 @@ import NavLinks from "./NavLinks.js";
 import SearchField from "./SearchField.js";
 
 export default function Navbar(props) {
-  const { changeLayout, setQuery, query } = props;
+  const { changeLayout, setQuery, query, setPathName } = props;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -69,6 +69,7 @@ export default function Navbar(props) {
                       <NavLinks
                         setSidebarOpen={setSidebarOpen}
                         setQuery={setQuery}
+                        setPathName={setPathName}
                       />
                     </nav>
                   </div>
@@ -84,7 +85,11 @@ export default function Navbar(props) {
             <Logo />
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 pb-4 space-y-1">
-                <NavLinks setSidebarOpen={setSidebarOpen} setQuery={setQuery} />
+                <NavLinks
+                  setSidebarOpen={setSidebarOpen}
+                  setQuery={setQuery}
+                  setPathName={setPathName}
+                />
               </nav>
             </div>
           </div>
