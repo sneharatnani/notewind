@@ -1,20 +1,7 @@
-import { useEffect } from "react";
 import SearchIcon from "../../assets/icons/SearchIcon.js";
 import XIcon from "../../assets/icons/XIcon.js";
 
 export default function SearchField({ setQuery, query }) {
-  useEffect(() => {
-    function handleChange(e) {
-      if (e.target.tagName === "A") {
-        setQuery("");
-      }
-    }
-    document.body.addEventListener("click", handleChange);
-    return () => {
-      document.body.removeEventListener("click", handleChange);
-    };
-  }, [setQuery]);
-
   return (
     <div className="w-full flex md:ml-0 items-center">
       <label htmlFor="search-field" className="sr-only">

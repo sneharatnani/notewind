@@ -16,7 +16,7 @@ export default function AuthenticatedApp() {
   return (
     <>
       <Navbar changeLayout={changeLayout} query={query} setQuery={setQuery} />
-      <section className="md:pl-64">
+      <section className="md:pl-64 pb-4">
         <Routes>
           <Route path="/" element={<Notes isGrid={isGrid} query={query} />} />
           <Route path="/bin" element={<Bin isGrid={isGrid} query={query} />} />

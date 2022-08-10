@@ -59,7 +59,7 @@ export default function Notes({ isGrid, query }) {
             >
               {pinnedNotes}
             </div>
-            {pinnedNotes.length !== 0 && (
+            {otherNotes.length !== 0 && pinnedNotes.length !== 0 && (
               <p
                 className={`text-xs font-medium text-gray-500 mb-2 ${
                   isGrid ? "pl-6" : "text-center"
