@@ -1,21 +1,13 @@
 import Note from "../components/note/Note.js";
 import useNotesData from "../hooks/useNotesData.js";
+import useSearch from "../hooks/useSearch.js";
 
 export default function Archive({ isGrid, query }) {
-  const notes = useNotesData();
+  const { archived } = useNotesData();
 
-  const searchedNotes = notes
-    .filter(
-      (note) =>
-        note.title.toLowerCase().includes(query.toLowerCase()) ||
-        note.body.toLowerCase().includes(query.toLowerCase()) ||
-        note.label.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((n) => <Note {...n} key={n.id} />);
+  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
 
-  const archivedNotes = notes
-    .filter((note) => note.archived === true && note.deleted === false)
-    .map((n) => <Note {...n} key={n.id} />);
+  const archivedNotes = archived.map((n) => <Note {...n} key={n.id} />);
 
   return (
     <div

@@ -1,21 +1,13 @@
 import useNotesData from "../hooks/useNotesData.js";
 import Note from "../components/note/Note.js";
+import useSearch from "../hooks/useSearch.js";
 
 export default function Bin({ isGrid, query }) {
-  const notes = useNotesData();
+  const { deleted } = useNotesData();
 
-  const searchedNotes = notes
-    .filter(
-      (note) =>
-        note.title.toLowerCase().includes(query.toLowerCase()) ||
-        note.body.toLowerCase().includes(query.toLowerCase()) ||
-        note.label.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((n) => <Note {...n} key={n.id} />);
+  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
 
-  const deletedNotes = notes
-    .filter((note) => note.deleted === true)
-    .map((n) => <Note {...n} key={n.id} />);
+  const deletedNotes = deleted.map((n) => <Note {...n} key={n.id} />);
 
   return (
     <div

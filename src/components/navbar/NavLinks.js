@@ -8,51 +8,43 @@ import LabelIcon from "../../assets/icons/LabelIcon.js";
 
 export default function NavLinks(props) {
   const { setSidebarOpen, setQuery, setPathName } = props;
-  const allNotes = useNotesData();
-  const allLabels = allNotes.filter((note) => note.label !== "");
+  const { labeledNotes } = useNotesData();
 
   function getAllLabels() {
-    const labels = allLabels.map((n) => n.label);
-    let sortedLabels = [];
+    const labels = labeledNotes.map((n) => n.label);
+    let allLabels = [];
     for (let i = 0; i < labels.length; i++) {
-      if (!sortedLabels.includes(labels[i])) {
-        sortedLabels.push(labels[i]);
+      if (!allLabels.includes(labels[i])) {
+        allLabels.push(labels[i]);
       }
     }
-    return sortedLabels;
+    return allLabels;
   }
 
   return (
     <>
-      <StyledNavLink
-        path="/"
-        setSidebarOpen={setSidebarOpen}
-        setQuery={setQuery}
-      >
+      <StyledNavLink path="/" {...props}>
         <NoteIcon />
         Notes
       </StyledNavLink>
-      <StyledNavLink
-        path="/archive"
-        setSidebarOpen={setSidebarOpen}
-        setQuery={setQuery}
-      >
+      <StyledNavLink path="/archive" {...props}>
         <Archive svgProps="mr-4 flex-shrink-0 h-6 w-6" />
         Archive
       </StyledNavLink>
-      <StyledNavLink
-        path="/bin"
-        setSidebarOpen={setSidebarOpen}
-        setQuery={setQuery}
-      >
+      <StyledNavLink path="/bin" {...props}>
         <Bin svgProps="mr-4 flex-shrink-0 h-6 w-6" />
         Bin
       </StyledNavLink>
+
       {/* all labels */}
       {getAllLabels().map((label, i) => (
         <Link
           to={`/${label.split(" ").join("")}`}
-          onClick={() => setPathName(label.split(" ").join(""))}
+          onClick={() => {
+            setPathName(label.split(" ").join(""));
+            setSidebarOpen(false);
+            setQuery("");
+          }}
           className="text-white hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
           key={i}
         >

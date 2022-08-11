@@ -1,29 +1,16 @@
 import NewNote from "../components/newNote/NewNote.js";
 import useNotesData from "../hooks/useNotesData.js";
 import Note from "../components/note/Note.js";
+import useSearch from "../hooks/useSearch.js";
 
 export default function Notes({ isGrid, query }) {
-  const notes = useNotesData();
-  const filtered = notes.filter(
-    (n) => n.archived === false && n.deleted === false
-  );
+  const { pinned, unpinned } = useNotesData();
 
-  const pinnedNotes = filtered
-    .filter((note) => note.pinned === true)
-    .map((n) => <Note {...n} key={n.id} />);
+  const pinnedNotes = pinned.map((n) => <Note {...n} key={n.id} />);
 
-  const otherNotes = filtered
-    .filter((note) => note.pinned === false)
-    .map((n) => <Note {...n} key={n.id} />);
+  const otherNotes = unpinned.map((n) => <Note {...n} key={n.id} />);
 
-  const searchedNotes = notes
-    .filter(
-      (note) =>
-        note.title.toLowerCase().includes(query.toLowerCase()) ||
-        note.body.toLowerCase().includes(query.toLowerCase()) ||
-        note.label.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((n) => <Note {...n} key={n.id} />);
+  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
 
   return (
     <>
