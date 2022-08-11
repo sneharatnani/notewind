@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
 import { NotesContext } from "../context/notesContext.js";
-import ColorPaletteIcon from '../assets/icons/ColorPaletteIcon.js'
+import ColorPaletteIcon from "../assets/icons/ColorPaletteIcon.js";
 import Check from "../assets/icons/CheckIcon.js";
 import Bin from "../assets/icons/BinIcon.js";
 import Archive from "../assets/icons/ArchiveIcon.js";
@@ -12,73 +12,103 @@ import DeleteForever from "../assets/icons/DeleteForeverIcon.js";
 import Restore from "../assets/icons/RestoreIcon.js";
 
 export default function NotePreview(props) {
-    const { id, title, body, bg,label,pinned, deleted, archived,isOpen, setIsOpen} = props;
-    const { updateNote, deleteNote } = useContext(NotesContext);
-    const [showColors, setShowColors] = useState(false);
-    const [note, setNote] = useState({
-        title,
-        body,
-        bg,
-        label,
-    })
+  const {
+    id,
+    title,
+    body,
+    bg,
+    label,
+    pinned,
+    deleted,
+    archived,
+    isOpen,
+    setIsOpen,
+  } = props;
+  const { updateNote, deleteNote } = useContext(NotesContext);
+  const [showColors, setShowColors] = useState(false);
+  const [note, setNote] = useState({
+    title,
+    body,
+    bg,
+    label,
+  });
 
   function setUpdatedNote() {
-      for (let key in note) {
-          updateNote(id, { [key]: note[key] })
-       }
-   }
+    for (let key in note) {
+      updateNote(id, { [key]: note[key] });
+    }
+  }
 
   function closeModal() {
-      setUpdatedNote();
-      setIsOpen(false);
+    setUpdatedNote();
+    setIsOpen(false);
   }
-  
+
   function changeBg(bg) {
-    setNote(prevNote=> ({...prevNote,bg}))
+    setNote((prevNote) => ({ ...prevNote, bg }));
   }
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setNote(prevNote => ({ ...prevNote, [name]: value }));
+    setNote((prevNote) => ({ ...prevNote, [name]: value }));
   }
 
-    return (
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" />
-          </Transition.Child>
+  return (
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" />
+        </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel
+                className={`font-poppins w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${note.bg}`}
               >
-                <Dialog.Panel
-                  className={`font-poppins w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${note.bg}`}
-                >
+                {deleted ? (
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    value={note.title}
+                    readOnly
+                    className="font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg bg-transparent"
+                  />
+                ) : (
                   <input
                     type="text"
                     placeholder="Title"
                     name="title"
                     value={note.title}
                     onChange={handleChange}
-                    className="font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg bg-transparent"
+                    className={`font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg bg-transparent`}
                   />
+                )}
+                {deleted ? (
+                  <input
+                    placeholder="Label"
+                    type="text"
+                    readOnly
+                    value={note.label}
+                    className="border-0 w-full tracking-wide focus:ring-0 block focus-visible:outline-none text-sm bg-transparent"
+                  />
+                ) : (
                   <input
                     placeholder="Label"
                     type="text"
@@ -87,6 +117,15 @@ export default function NotePreview(props) {
                     onChange={handleChange}
                     className="border-0 w-full tracking-wide focus:ring-0 block focus-visible:outline-none text-sm bg-transparent"
                   />
+                )}
+                {deleted ? (
+                  <textarea
+                    placeholder="Start Here..."
+                    value={note.body}
+                    readOnly
+                    className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block bg-transparent"
+                  />
+                ) : (
                   <textarea
                     placeholder="Start Here..."
                     name="body"
@@ -94,11 +133,13 @@ export default function NotePreview(props) {
                     onChange={handleChange}
                     className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block bg-transparent"
                   />
+                )}
 
-                  {/* preview toolbar start */}
-                  <section className="flex justify-between items-center mt-3">
-                    <div className="flex gap-4 text-gray-600">
-                      {/* color palette */}
+                {/* preview toolbar start */}
+                <section className="flex justify-between items-center mt-3">
+                  <div className="flex gap-4 text-gray-600">
+                    {/* color palette */}
+                    {deleted === false && (
                       <>
                         <button
                           className="hover:text-gray-500/80"
@@ -145,90 +186,91 @@ export default function NotePreview(props) {
                           </>
                         )}
                       </>
-                      {/* bin */}
-                      {deleted === false && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            updateNote(id, { deleted: !deleted });
-                            setIsOpen(false);
-                          }}
-                        >
-                          <Bin svgProps="h-5 w-5" />
-                        </button>
-                      )}
-                      {/* archive */}
-                      {deleted === false && archived === false && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            updateNote(id, { archived: !archived });
-                            setIsOpen(false);
-                          }}
-                        >
-                          <Archive svgProps="h-5 w-5" />
-                        </button>
-                      )}
-                      {/* pin */}
-                      {deleted === false && archived === false && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            updateNote(id, { pinned: !pinned });
-                            setIsOpen(false);
-                          }}
-                        >
-                          {pinned ? <Pinned /> : <Unpinned />}
-                        </button>
-                      )}
-                      {/* unarchive */}
-                      {deleted === false && archived === true && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            updateNote(id, { archived: !archived });
-                            setIsOpen(false);
-                          }}
-                        >
-                          <UnArchive />
-                        </button>
-                      )}
-                      {/* delete forever */}
-                      {deleted && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            deleteNote(id);
-                            setIsOpen(false);
-                          }}
-                        >
-                          <DeleteForever />
-                        </button>
-                      )}
-                      {/* restore */}
-                      {deleted && (
-                        <button
-                          className="hover:text-gray-500/80"
-                          onClick={() => {
-                            updateNote(id, { deleted: !deleted });
-                            setIsOpen(false);
-                          }}
-                        >
-                          <Restore/>
-                        </button>
-                      )}
-                    </div>
-                    {/* check */}
-                    <button onClick={closeModal}>
-                      <Check />
-                    </button>
-                  </section>
-                  {/* preview toolbar end */}
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+                    )}
+                    {/* bin */}
+                    {deleted === false && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          updateNote(id, { deleted: !deleted });
+                          setIsOpen(false);
+                        }}
+                      >
+                        <Bin svgProps="h-5 w-5" />
+                      </button>
+                    )}
+                    {/* archive */}
+                    {deleted === false && archived === false && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          updateNote(id, { archived: !archived });
+                          setIsOpen(false);
+                        }}
+                      >
+                        <Archive svgProps="h-5 w-5" />
+                      </button>
+                    )}
+                    {/* pin */}
+                    {deleted === false && archived === false && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          updateNote(id, { pinned: !pinned });
+                          setIsOpen(false);
+                        }}
+                      >
+                        {pinned ? <Pinned /> : <Unpinned />}
+                      </button>
+                    )}
+                    {/* unarchive */}
+                    {deleted === false && archived === true && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          updateNote(id, { archived: !archived });
+                          setIsOpen(false);
+                        }}
+                      >
+                        <UnArchive />
+                      </button>
+                    )}
+                    {/* delete forever */}
+                    {deleted && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          deleteNote(id);
+                          setIsOpen(false);
+                        }}
+                      >
+                        <DeleteForever />
+                      </button>
+                    )}
+                    {/* restore */}
+                    {deleted && (
+                      <button
+                        className="hover:text-gray-500/80"
+                        onClick={() => {
+                          updateNote(id, { deleted: !deleted });
+                          setIsOpen(false);
+                        }}
+                      >
+                        <Restore />
+                      </button>
+                    )}
+                  </div>
+                  {/* check */}
+                  <button onClick={closeModal}>
+                    <Check />
+                  </button>
+                </section>
+                {/* preview toolbar end */}
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
-        </Dialog>
-      </Transition>
-    );
+        </div>
+      </Dialog>
+    </Transition>
+  );
 }
