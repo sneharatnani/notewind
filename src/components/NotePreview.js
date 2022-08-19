@@ -82,6 +82,7 @@ export default function NotePreview(props) {
               <Dialog.Panel
                 className={`font-poppins w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${note.bg}`}
               >
+                {/* note title */}
                 {deleted ? (
                   <input
                     type="text"
@@ -100,6 +101,7 @@ export default function NotePreview(props) {
                     className={`font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg bg-transparent`}
                   />
                 )}
+                {/* note label */}
                 {deleted ? (
                   <input
                     placeholder="Label"
@@ -118,6 +120,7 @@ export default function NotePreview(props) {
                     className="border-0 w-full tracking-wide focus:ring-0 block focus-visible:outline-none text-sm bg-transparent"
                   />
                 )}
+                {/* note body */}
                 {deleted ? (
                   <textarea
                     placeholder="Start Here..."

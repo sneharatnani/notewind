@@ -6,23 +6,23 @@ import {
   doc,
   deleteDoc,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { UserContext } from "./userContext.js";
 
 export const NotesContext = createContext();
 
 export default function NotesContextProvider({ children }) {
   const notesRef = collection(db, "notes");
   const [notes, setNotes] = useState([]);
-    
-  useEffect(() => {
-    const unsubscribe = () =>
-      onSnapshot(notesRef, (snapshot) => {
-        setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      });
-    unsubscribe();
+  const { user } = useContext(UserContext);
 
-    return () => unsubscribe();
+  useEffect(() => {
+    onSnapshot(query(notesRef, where("author", "==", user.uid)), (snapshot) => {
+      setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
   }, []);
 
   async function addNewNote(newNote) {
