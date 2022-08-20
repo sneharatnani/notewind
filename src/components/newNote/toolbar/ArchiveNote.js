@@ -3,7 +3,7 @@ import Archive from "../../../assets/icons/ArchiveIcon.js";
 import { NewNoteContext } from "../../../context/newNoteContext.js";
 
 export default function ArchiveNote(props) {
-  const { closeModal} = props;
+  const { closeModal } = props;
   const { setNewNote, setIsArchived } = useContext(NewNoteContext);
 
   function archiveNote() {

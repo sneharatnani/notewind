@@ -9,7 +9,7 @@ export default function Toolbar({ closeModal, createNewNote }) {
     <>
       <div className="flex justify-between items-center mt-3">
         <div className="flex gap-4 text-gray-600">
-          <ColorPalette/>
+          <ColorPalette />
           <BinNote closeModal={closeModal} />
           <ArchiveNote closeModal={closeModal} />
           <PinNote />

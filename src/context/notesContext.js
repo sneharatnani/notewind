@@ -8,6 +8,8 @@ import {
   onSnapshot,
   query,
   where,
+  orderBy,
+  Timestamp,
 } from "firebase/firestore";
 import { createContext, useState, useEffect, useContext } from "react";
 import { UserContext } from "./userContext.js";
@@ -15,19 +17,24 @@ import { UserContext } from "./userContext.js";
 export const NotesContext = createContext();
 
 export default function NotesContextProvider({ children }) {
-  const notesRef = collection(db, "notes");
   const [notes, setNotes] = useState([]);
   const { user } = useContext(UserContext);
+  const notesRef = collection(db, "notes");
 
   useEffect(() => {
-    onSnapshot(query(notesRef, where("author", "==", user.uid)), (snapshot) => {
+    const q = query(
+      notesRef,
+      where("author", "==", user.uid),
+      orderBy("createdAt", "desc")
+    );
+    onSnapshot(q, (snapshot) => {
       setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   }, []);
 
   async function addNewNote(newNote) {
     try {
-      await addDoc(notesRef, newNote);
+      await addDoc(notesRef, { ...newNote, createdAt: Timestamp.now() });
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +43,7 @@ export default function NotesContextProvider({ children }) {
   async function updateNote(id, value) {
     const note = doc(db, "notes", id);
     try {
-      await updateDoc(note, value);
+      await updateDoc(note, { ...value, createdAt: Timestamp.now() });
     } catch (err) {
       console.log(err);
     }

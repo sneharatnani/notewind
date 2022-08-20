@@ -4,12 +4,15 @@ import Pencil from "../Pencil.js";
 import Toolbar from "./toolbar/Toolbar.js";
 import { UserContext } from "../../context/userContext.js";
 import { NewNoteContext } from "../../context/newNoteContext.js";
+import Toast from "../Toast.js";
 
 export default function NewNote() {
   const [isOpen, setIsOpen] = useState(false);
+  // const [show, setShow] = useState(false);
   const { user } = useContext(UserContext);
-  const { setNewNote, createNewNote,newNote } = useContext(NewNoteContext);
-  
+  const { setNewNote, createNewNote, newNote, message, show, setShow } =
+    useContext(NewNoteContext);
+
   function openModal() {
     setNewNote({
       title: "",
@@ -35,6 +38,7 @@ export default function NewNote() {
 
   return (
     <>
+      <Toast show={show} setShow={setShow} message={message} />
       <Pencil setOpen={openModal} />
 
       <Transition appear show={isOpen} as={Fragment}>

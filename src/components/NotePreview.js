@@ -40,7 +40,6 @@ export default function NotePreview(props) {
   }
 
   function closeModal() {
-    setUpdatedNote();
     setIsOpen(false);
   }
 
@@ -264,7 +263,12 @@ export default function NotePreview(props) {
                     )}
                   </div>
                   {/* check */}
-                  <button onClick={closeModal}>
+                  <button
+                    onClick={() => {
+                      setUpdatedNote();
+                      closeModal();
+                    }}
+                  >
                     <Check />
                   </button>
                 </section>
