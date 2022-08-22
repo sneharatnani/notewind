@@ -1,5 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import XIcon from "../assets/icons/XIcon.js";
 
