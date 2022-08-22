@@ -3,13 +3,16 @@ import Bin from "../pages/Bin.js";
 import Archive from "../pages/Archive.js";
 import Navbar from "../components/navbar/Navbar.js";
 import { Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Labels from "../pages/Labels.js";
+import { ToastContext } from "../context/toastContext.js";
+import Toast from "../components/Toast.js";
 
 export default function AuthenticatedApp() {
   const [isGrid, setIsGrid] = useState(true);
   const [query, setQuery] = useState("");
   const [pathName, setPathName] = useState("");
+  const { show, message, setShow } = useContext(ToastContext);
 
   function changeLayout() {
     setIsGrid((prevState) => !prevState);
@@ -23,6 +26,7 @@ export default function AuthenticatedApp() {
         setQuery={setQuery}
         setPathName={setPathName}
       />
+      <Toast show={show} setShow={setShow} message={message} />
       <section className="md:pl-64 pb-4">
         <Routes>
           <Route path="/" element={<Notes isGrid={isGrid} query={query} />} />

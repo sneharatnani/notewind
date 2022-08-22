@@ -1,17 +1,63 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Pencil from "../Pencil.js";
-import Toolbar from "./toolbar/Toolbar.js";
 import { UserContext } from "../../context/userContext.js";
-import { NewNoteContext } from "../../context/newNoteContext.js";
-import Toast from "../Toast.js";
+import { NotesContext } from "../../context/notesContext.js";
+import NewNoteToolbar from "./NewNoteToolbar.js";
+import { ToastContext } from "../../context/toastContext.js";
 
 export default function NewNote() {
+  const { setShow, setMessage } = useContext(ToastContext);
   const [isOpen, setIsOpen] = useState(false);
-  // const [show, setShow] = useState(false);
+  const { addNewNote } = useContext(NotesContext);
   const { user } = useContext(UserContext);
-  const { setNewNote, createNewNote, newNote, message, show, setShow } =
-    useContext(NewNoteContext);
+  const [newNote, setNewNote] = useState({
+    title: "",
+    body: "",
+    label: "",
+    archived: false,
+    author: user.uid,
+    bg: "bg-white",
+    deleted: false,
+    pinned: false,
+  });
+
+  useEffect(() => {
+    if (newNote.deleted || newNote.archived) {
+      createNewNote();
+      setIsOpen(false);
+    }
+  }, [newNote]);
+
+  // to show toast
+  useEffect(() => {
+    if (newNote.deleted && (newNote.body !== "" || newNote.title !== "")) {
+      setMessage("Note Binned");
+      setShow(true);
+    } else if (newNote.deleted && newNote.body === "" && newNote.title === "") {
+      setMessage("Can't Delete Empty Note");
+      setShow(true);
+    } else if (
+      newNote.archived &&
+      (newNote.body !== "" || newNote.title !== "")
+    ) {
+      setMessage("Note Archived");
+      setShow(true);
+    } else if (
+      newNote.archived &&
+      newNote.body === "" &&
+      newNote.title === ""
+    ) {
+      setMessage("Can't Archive Empty Note");
+      setShow(true);
+    }
+  }, [newNote]);
+
+  function createNewNote() {
+    if (newNote.body !== "" || newNote.title !== "") {
+      addNewNote(newNote);
+    }
+  }
 
   function openModal() {
     setNewNote({
@@ -38,7 +84,6 @@ export default function NewNote() {
 
   return (
     <>
-      <Toast show={show} setShow={setShow} message={message} />
       <Pencil setOpen={openModal} />
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -92,9 +137,12 @@ export default function NewNote() {
                     onChange={handleChange}
                     className="border-0 focus:ring-0 min-h-[8rem] tracking-wide resize-none focus-visible:outline-none w-full block bg-transparent"
                   />
-                  <Toolbar
+
+                  <NewNoteToolbar
                     closeModal={closeModal}
                     createNewNote={createNewNote}
+                    setNewNote={setNewNote}
+                    newNote={newNote}
                   />
                 </Dialog.Panel>
               </Transition.Child>

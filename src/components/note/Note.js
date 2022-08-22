@@ -1,9 +1,9 @@
 import NoteLabel from "./NoteLabel.js";
-import {useState } from "react";
+import { useState } from "react";
 import NotePreview from "../NotePreview.js";
 
 export default function Note(props) {
-  const { title, body, label, bg} = props;
+  const { title, body, label, bg } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,10 +20,10 @@ export default function Note(props) {
           </p>
         </div>
         <div className="flex gap-2 flex-wrap mt-2">
-          <NoteLabel label={label}/>
+          <NoteLabel label={label} />
         </div>
       </div>
-      <NotePreview {...props} isOpen={isOpen} setIsOpen={ setIsOpen} />
+      <NotePreview {...props} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 }

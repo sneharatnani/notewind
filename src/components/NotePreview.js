@@ -1,6 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
-import { NotesContext } from "../context/notesContext.js";
 import ColorPaletteIcon from "../assets/icons/ColorPaletteIcon.js";
 import Check from "../assets/icons/CheckIcon.js";
 import Bin from "../assets/icons/BinIcon.js";
@@ -10,6 +9,8 @@ import Unpinned from "../assets/icons/UnpinIcon.js";
 import UnArchive from "../assets/icons/UnArchiveIcon.js";
 import DeleteForever from "../assets/icons/DeleteForeverIcon.js";
 import Restore from "../assets/icons/RestoreIcon.js";
+import { NotesContext } from "../context/notesContext.js";
+import { ToastContext } from "../context/toastContext.js";
 
 export default function NotePreview(props) {
   const {
@@ -24,7 +25,6 @@ export default function NotePreview(props) {
     isOpen,
     setIsOpen,
   } = props;
-  const { updateNote, deleteNote } = useContext(NotesContext);
   const [showColors, setShowColors] = useState(false);
   const [note, setNote] = useState({
     title,
@@ -32,6 +32,9 @@ export default function NotePreview(props) {
     bg,
     label,
   });
+  const { updateNote, deleteNote } = useContext(NotesContext);
+  // toast
+  const { setShow, setMessage } = useContext(ToastContext);
 
   function setUpdatedNote() {
     for (let key in note) {
@@ -189,30 +192,39 @@ export default function NotePreview(props) {
                         )}
                       </>
                     )}
+
                     {/* bin */}
                     {deleted === false && (
                       <button
                         className="hover:text-gray-500/80"
                         onClick={() => {
                           updateNote(id, { deleted: !deleted });
+                          setMessage("Note Binned");
+                          setShow(true);
                           setIsOpen(false);
+                          setTimeout(() => setShow(false), 4000);
                         }}
                       >
                         <Bin svgProps="h-5 w-5" />
                       </button>
                     )}
+
                     {/* archive */}
                     {deleted === false && archived === false && (
                       <button
                         className="hover:text-gray-500/80"
                         onClick={() => {
                           updateNote(id, { archived: !archived });
+                          setMessage("Note Archived");
+                          setShow(true);
                           setIsOpen(false);
+                          setTimeout(() => setShow(false), 4000);
                         }}
                       >
                         <Archive svgProps="h-5 w-5" />
                       </button>
                     )}
+
                     {/* pin */}
                     {deleted === false && archived === false && (
                       <button
@@ -225,18 +237,23 @@ export default function NotePreview(props) {
                         {pinned ? <Pinned /> : <Unpinned />}
                       </button>
                     )}
+
                     {/* unarchive */}
                     {deleted === false && archived === true && (
                       <button
                         className="hover:text-gray-500/80"
                         onClick={() => {
                           updateNote(id, { archived: !archived });
+                          setMessage("Note Unarchived");
+                          setShow(true);
                           setIsOpen(false);
+                          setTimeout(() => setShow(false), 4000);
                         }}
                       >
                         <UnArchive />
                       </button>
                     )}
+
                     {/* delete forever */}
                     {deleted && (
                       <button
@@ -249,19 +266,24 @@ export default function NotePreview(props) {
                         <DeleteForever />
                       </button>
                     )}
+
                     {/* restore */}
                     {deleted && (
                       <button
                         className="hover:text-gray-500/80"
                         onClick={() => {
                           updateNote(id, { deleted: !deleted });
+                          setMessage("Note Restored");
+                          setShow(true);
                           setIsOpen(false);
+                          setTimeout(() => setShow(false), 4000);
                         }}
                       >
                         <Restore />
                       </button>
                     )}
                   </div>
+
                   {/* check */}
                   <button
                     onClick={() => {

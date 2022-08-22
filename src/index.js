@@ -10,7 +10,7 @@ root.render(
   <React.StrictMode>
     <Router>
       <UserContextProvider>
-          <App />
+        <App />
       </UserContextProvider>
     </Router>
   </React.StrictMode>

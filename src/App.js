@@ -6,21 +6,17 @@ import Spinner from "./components/Spinner.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config.js";
 import NotesContextProvider from "./context/notesContext.js";
-import NewNoteContextProvider from "./context/newNoteContext.js";
+import ToastContextProvider from "./context/toastContext.js";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    const unsub = () =>
-      onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-        setLoading(false);
-      });
-    unsub();
 
-    return () => unsub();
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -29,9 +25,9 @@ function App() {
         <Spinner />
       ) : user ? (
         <NotesContextProvider>
-          <NewNoteContextProvider>
+          <ToastContextProvider>
             <AuthenticatedApp />
-          </NewNoteContextProvider>
+          </ToastContextProvider>
         </NotesContextProvider>
       ) : (
         <UnauthenticatedApp />
@@ -39,6 +35,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
