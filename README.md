@@ -20,6 +20,10 @@ NoteWind is a note-taking app, created with ReactJS and Firebase.
 
 - Fully responsive design
 
+## Screenshot
+
+![screenshot](./src//assets//images//screenshot.png)
+
 ## Technologies Used
 
 - [ReactJS](https://reactjs.org/)
