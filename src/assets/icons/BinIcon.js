@@ -1,4 +1,4 @@
-export default function Bin({ svgProps }) {
+export default function BinIcon({ svgProps }) {
   return (
     <svg
       className={svgProps}

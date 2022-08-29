@@ -10,7 +10,9 @@ export default function Note(props) {
     <>
       <div
         className={`group w-full rounded-lg p-4 border border-gray-200 max-h-60 box-border overflow-hidden cursor-pointer hover:shadow-sm hover:border-gray-300 flex flex-col justify-between ${bg}`}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+        }}
       >
         <div>
           {" "}

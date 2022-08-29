@@ -1,4 +1,4 @@
-export default function Unpinned() {
+export default function UnpinIcon() {
   return (
     <svg
       stroke="currentColor"

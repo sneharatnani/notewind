@@ -1,4 +1,4 @@
-export default function Pinned() {
+export default function PinIcon() {
   return (
     <svg
       stroke="currentColor"

@@ -1,7 +1,9 @@
 import SearchIcon from "../../assets/icons/SearchIcon.js";
 import XIcon from "../../assets/icons/XIcon.js";
 
-export default function SearchField({ setQuery, query }) {
+export default function SearchField(props) {
+  const { setQuery, query } = props;
+
   return (
     <div className="w-full flex md:ml-0 items-center">
       <label htmlFor="search-field" className="sr-only">

@@ -1,4 +1,4 @@
-export default function Archive(props) {
+export default function ArchiveIcon(props) {
   const { svgProps } = props;
   return (
     <svg

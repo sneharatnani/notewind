@@ -1,4 +1,4 @@
-export default function Check() {
+export default function CheckIcon() {
   return (
     <svg
       className="h-6 w-6 stroke-zinc-600"
