@@ -17,7 +17,7 @@ export default function Note(props) {
         <div>
           {" "}
           <h3 className="font-medium text-lg">{title}</h3>
-          <p className="text-sm whitespace-pre-wrap break-words font-poppins">
+          <p className="text-sm font-poppins max-h-20 break-words whitespace-pre-wrap overflow-hidden">
             {body}
           </p>
         </div>
