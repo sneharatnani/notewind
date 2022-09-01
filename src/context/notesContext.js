@@ -20,16 +20,18 @@ export default function NotesContextProvider({ children }) {
   const [notes, setNotes] = useState([]);
   const { user } = useContext(UserContext);
   const notesRef = collection(db, "notes");
+  const q = query(
+    notesRef,
+    where("author", "==", user.uid),
+    orderBy("createdAt", "desc")
+  );
 
   useEffect(() => {
-    const q = query(
-      notesRef,
-      where("author", "==", user.uid),
-      orderBy("createdAt", "desc")
-    );
-    onSnapshot(q, (snapshot) => {
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
+
+    return unsubscribe;
   }, []);
 
   async function addNewNote(newNote) {
