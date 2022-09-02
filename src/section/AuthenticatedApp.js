@@ -28,7 +28,7 @@ export default function AuthenticatedApp() {
       />
       <Toast show={show} setShow={setShow} message={message} />
 
-      <section className="md:pl-64 pb-4">
+      <main className="md:pl-64 pb-4">
         <Routes>
           <Route path="/" element={<Notes isGrid={isGrid} query={query} />} />
           <Route path="/bin" element={<Bin isGrid={isGrid} query={query} />} />
@@ -44,7 +44,7 @@ export default function AuthenticatedApp() {
           />
           <Route path="*" element={<Notes isGrid={isGrid} query={query} />} />
         </Routes>
-      </section>
+      </main>
     </>
   );
 }

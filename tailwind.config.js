@@ -15,9 +15,6 @@ module.exports = {
       },
       gridTemplateColumns: {
         "1col": "repeat(1,1fr)",
-        "2col": "repeat(2,1fr)",
-        "3col": "repeat(3,1fr)",
-        "4col": "repeat(4,1fr)",
       },
       colors: {
         labelColor: "rgba(0,0,0,.08)",

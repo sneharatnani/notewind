@@ -29,7 +29,7 @@ export default function NavLinks(props) {
     <>
       <Link
         to="/"
-        className="text-white hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
+        className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
         onClick={handleClick}
       >
         <NoteIcon />
@@ -38,7 +38,7 @@ export default function NavLinks(props) {
 
       <Link
         to="/archive"
-        className="text-white hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
+        className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
         onClick={handleClick}
       >
         <ArchiveIcon svgProps="mr-4 flex-shrink-0 h-6 w-6" />
@@ -47,7 +47,7 @@ export default function NavLinks(props) {
 
       <Link
         to="/bin"
-        className="text-white hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
+        className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
         onClick={handleClick}
       >
         <BinIcon svgProps="mr-4 flex-shrink-0 h-6 w-6" />
@@ -62,7 +62,7 @@ export default function NavLinks(props) {
             setPathName(label.split(" ").join(""));
             handleClick();
           }}
-          className="text-white hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
+          className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
           key={i}
         >
           <LabelIcon svgProps="mr-4 flex-shrink-0 h-6 w-6" />
