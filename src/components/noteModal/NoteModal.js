@@ -33,7 +33,7 @@ export default function NoteModal(props) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`font-poppins w-full max-w-md transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${bg}`}
+                className={`font-poppins w-full max-w-[35rem] transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${bg}`}
               >
                 {/* note title */}
                 <input
