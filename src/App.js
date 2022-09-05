@@ -5,7 +5,6 @@ import UnauthenticatedApp from "./section/UnauthenticatedApp.js";
 import Spinner from "./components/Spinner.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config.js";
-import NotesContextProvider from "./context/notesContext.js";
 import ToastContextProvider from "./context/toastContext.js";
 
 function App() {
@@ -26,11 +25,9 @@ function App() {
       {loading ? (
         <Spinner />
       ) : user ? (
-        <NotesContextProvider>
-          <ToastContextProvider>
-            <AuthenticatedApp />
-          </ToastContextProvider>
-        </NotesContextProvider>
+        <ToastContextProvider>
+          <AuthenticatedApp />
+        </ToastContextProvider>
       ) : (
         <UnauthenticatedApp />
       )}

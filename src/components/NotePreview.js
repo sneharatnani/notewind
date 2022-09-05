@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
-import { NotesContext } from "../context/notesContext.js";
 import { ToastContext } from "../context/toastContext.js";
 import NoteModal from "./noteModal/NoteModal.js";
+// firebase
+import { notesRef } from "../firebase-config.js";
+import { doc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 
 export default function NotePreview(props) {
   const {
@@ -23,10 +25,30 @@ export default function NotePreview(props) {
     bg,
     label,
   });
-  const { updateNote, deleteNote } = useContext(NotesContext);
+
   // toast
   const { setShow, setMessage } = useContext(ToastContext);
 
+  // firebase
+  async function updateNote(id, value) {
+    const note = doc(notesRef, id);
+    try {
+      await updateDoc(note, { ...value, createdAt: Timestamp.now() });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function deleteNote(id) {
+    const note = doc(notesRef, id);
+    try {
+      await deleteDoc(note);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // others
   function changeBg(bg) {
     setNote((prevNote) => ({ ...prevNote, bg }));
   }

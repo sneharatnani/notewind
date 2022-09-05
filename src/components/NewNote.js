@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Pencil from "./Pencil.js";
 import { UserContext } from "../context/userContext.js";
-import { NotesContext } from "../context/notesContext.js";
 import { ToastContext } from "../context/toastContext.js";
 import NoteModal from "./noteModal/NoteModal.js";
+// firebase
+import { notesRef } from "../firebase-config.js";
+import { addDoc, Timestamp } from "firebase/firestore";
 
 export default function NewNote() {
   const { user } = useContext(UserContext);
@@ -19,9 +21,6 @@ export default function NewNote() {
   };
   const [newNote, setNewNote] = useState(newEmptyNote);
   const [isOpen, setIsOpen] = useState(false);
-  const { addNewNote } = useContext(NotesContext);
-  // toast
-  const { setShow, setMessage } = useContext(ToastContext);
 
   useEffect(() => {
     if (newNote.deleted || newNote.archived) {
@@ -31,6 +30,7 @@ export default function NewNote() {
   }, [newNote]);
 
   // to show toast
+  const { setShow, setMessage } = useContext(ToastContext);
   useEffect(() => {
     if (newNote.deleted && (newNote.body !== "" || newNote.title !== "")) {
       setMessage("Note Binned");
@@ -54,6 +54,16 @@ export default function NewNote() {
     }
   }, [newNote]);
 
+  // firebase
+  async function addNewNote(newNote) {
+    try {
+      await addDoc(notesRef, { ...newNote, createdAt: Timestamp.now() });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // others
   function openModal() {
     setNewNote(newEmptyNote);
     setIsOpen(true);
