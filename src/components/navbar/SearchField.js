@@ -5,13 +5,13 @@ export default function SearchField(props) {
   const { setQuery, query } = props;
 
   return (
-    <div className="w-full flex md:ml-0 items-center">
+    <div className="w-full flex md:ml-0 items-center ">
       <label htmlFor="search-field" className="sr-only">
         Search
       </label>
       <div className="relative w-full text-gray-400 focus-within:text-gray-600">
         <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
-          <SearchIcon props="h-5 w-5 fill-gray-600" />
+          <SearchIcon />
         </div>
         <input
           id="search-field"

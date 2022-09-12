@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { useContext, useState } from "react";
 import Labels from "../pages/Labels.js";
 import { ToastContext } from "../context/toastContext.js";
-import Toast from "../components/Toast.js";
+import Toast from "../components/toast/Toast.js";
 
 export default function AuthenticatedApp() {
   const [isGrid, setIsGrid] = useState(true);

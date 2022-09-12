@@ -1,11 +1,12 @@
 import ColorPalette from "./ColorPalette.js";
-import Bin from "./Bin.js";
-import Archive from "./Archive.js";
+import BinIcon from "../../../assets/icons/BinIcon.js";
+import ArchiveIcon from "../../../assets/icons/ArchiveIcon.js";
 import Pin from "./Pin.js";
 import CheckIcon from "../../../assets/icons/CheckIcon.js";
-import Unarchive from "./Unarchive.js";
-import Restore from "./Restore.js";
-import DeleteForever from "./DeleteForever.js";
+import RestoreIcon from "../../../assets/icons/RestoreIcon.js";
+import DeleteForeverIcon from "../../../assets/icons/DeleteForeverIcon.js";
+import IconContainer from "./IconContainer.js";
+import UnarchiveIcon from "../../../assets/icons/UnArchiveIcon.js";
 
 export default function Toolbar(props) {
   const {
@@ -30,22 +31,42 @@ export default function Toolbar(props) {
           {!deleted && <ColorPalette changeBg={changeBg} />}
 
           {/* bin */}
-          {!deleted && <Bin binNote={binNote} />}
+          {!deleted && (
+            <IconContainer handleClick={binNote}>
+              <BinIcon svgProps="h-5 w-5" />
+            </IconContainer>
+          )}
 
           {/* archive */}
-          {!archived && !deleted && <Archive archiveNote={archiveNote} />}
+          {!archived && !deleted && (
+            <IconContainer handleClick={archiveNote}>
+              <ArchiveIcon svgProps="h-5 w-5" />
+            </IconContainer>
+          )}
 
           {/* pin */}
           {!archived && !deleted && <Pin pinNote={pinNote} pinned={pinned} />}
 
           {/* unarchive */}
-          {archived && !deleted && <Unarchive unarchiveNote={unarchiveNote} />}
+          {archived && !deleted && (
+            <IconContainer handleClick={unarchiveNote}>
+              <UnarchiveIcon />
+            </IconContainer>
+          )}
 
           {/* deleteForever */}
-          {deleted && <DeleteForever deleteNoteForever={deleteNoteForever} />}
+          {deleted && (
+            <IconContainer handleClick={deleteNoteForever}>
+              <DeleteForeverIcon />
+            </IconContainer>
+          )}
 
           {/* restore */}
-          {deleted && <Restore restoreNote={restoreNote} />}
+          {deleted && (
+            <IconContainer handleClick={restoreNote}>
+              <RestoreIcon />
+            </IconContainer>
+          )}
         </div>
 
         {/* check */}

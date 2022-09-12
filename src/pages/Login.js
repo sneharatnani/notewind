@@ -30,7 +30,12 @@ export default function Login() {
       <footer className="absolute bottom-4 text-center w-full">
         <p>
           Copyright © {currentYear()}{" "}
-          <a href="https://github.com/sneharatnani" target={"_blank"}>
+          <a
+            href="https://github.com/sneharatnani"
+            target={"_blank"}
+            title="Github"
+            rel="noreferrer"
+          >
             sneharatnani <img className="inline" src={github} alt="github" />
           </a>
         </p>

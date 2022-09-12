@@ -9,6 +9,7 @@ export default function CheckIcon() {
       strokeLinejoin="round"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>Save</title>
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
   );

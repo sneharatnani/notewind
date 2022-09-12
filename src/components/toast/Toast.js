@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Transition } from "@headlessui/react";
-import XIcon from "../assets/icons/XIcon.js";
+import XIcon from "../../assets/icons/XIcon.js";
 
 export default function Toast({ show, setShow, message }) {
   return (

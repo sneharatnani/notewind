@@ -1,7 +1,7 @@
-export default function SearchIcon({ props }) {
+export default function SearchIcon() {
   return (
     <svg
-      className={props}
+      className="h-5 w-5 fill-gray-600"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

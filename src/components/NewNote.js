@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import Pencil from "./Pencil.js";
+import Pencil from "./pencil/Pencil.js";
 import { UserContext } from "../context/userContext.js";
 import { ToastContext } from "../context/toastContext.js";
 import NoteModal from "./noteModal/NoteModal.js";
