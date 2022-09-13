@@ -70,7 +70,7 @@ export default function Toolbar(props) {
         </div>
 
         {/* check */}
-        <button onClick={closeModal}>
+        <button onClick={closeModal} data-testid="save-note">
           <CheckIcon />
         </button>
       </div>

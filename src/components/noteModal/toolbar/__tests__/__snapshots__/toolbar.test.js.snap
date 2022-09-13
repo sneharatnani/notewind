@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar Shows ColorPalette, pin, archived and bin if deleted and archived is false 1`] = `
+<div>
+  <div
+    class="flex justify-between items-center mt-3"
+  >
+    <div
+      class="flex gap-4 text-gray-600"
+    >
+      <button
+        class="hover:text-gray-500/80"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Background Options
+          </title>
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28 0-.5.22-.5.5 0 .12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5 0 0112 22zm0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 00-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 012.5-2.5H16c2.21 0 4-1.79 4-4 0-3.86-3.59-7-8-7z"
+          />
+          <circle
+            cx="6.5"
+            cy="11.5"
+            r="1.5"
+          />
+          <circle
+            cx="9.5"
+            cy="7.5"
+            r="1.5"
+          />
+          <circle
+            cx="14.5"
+            cy="7.5"
+            r="1.5"
+          />
+          <circle
+            cx="17.5"
+            cy="11.5"
+            r="1.5"
+          />
+        </svg>
+      </button>
+      <button
+        class="hover:text-gray-500/80"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Delete
+          </title>
+          <g>
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M7 4V2h10v2h5v2h-2v15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6H2V4h5zM6 6v14h12V6H6zm3 3h2v8H9V9zm4 0h2v8h-2V9z"
+            />
+          </g>
+        </svg>
+      </button>
+      <button
+        class="hover:text-gray-500/80"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Archive
+          </title>
+          <path
+            d="m21.706 5.292-2.999-2.999A.996.996 0 0 0 18 2H6a.996.996 0 0 0-.707.293L2.294 5.292A.994.994 0 0 0 2 6v13c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6a.994.994 0 0 0-.294-.708zM6.414 4h11.172l1 1H5.414l1-1zM4 19V7h16l.002 12H4z"
+          />
+          <path
+            d="M14 9h-4v3H7l5 5 5-5h-3z"
+          />
+        </svg>
+      </button>
+      <button
+        class="hover:text-gray-500/80"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="0"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>
+            Pin Note
+          </title>
+          <path
+            d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A5.921 5.921 0 0 1 5 6.708V2.277a2.77 2.77 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354zm1.58 1.408-.002-.001.002.001zm-.002-.001.002.001A.5.5 0 0 1 6 2v5a.5.5 0 0 1-.276.447h-.002l-.012.007-.054.03a4.922 4.922 0 0 0-.827.58c-.318.278-.585.596-.725.936h7.792c-.14-.34-.407-.658-.725-.936a4.915 4.915 0 0 0-.881-.61l-.012-.006h-.002A.5.5 0 0 1 10 7V2a.5.5 0 0 1 .295-.458 1.775 1.775 0 0 0 .351-.271c.08-.08.155-.17.214-.271H5.14c.06.1.133.191.214.271a1.78 1.78 0 0 0 .37.282z"
+          />
+        </svg>
+      </button>
+    </div>
+    <button
+      data-testid="save-note"
+    >
+      <svg
+        class="h-6 w-6 stroke-zinc-600"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Save
+        </title>
+        <polyline
+          points="20 6 9 17 4 12"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;

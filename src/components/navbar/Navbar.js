@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import Logo from "./Logo.js";
 import Profile from "./Profile.js";
 import NavLinks from "./NavLinks.js";
-import SearchField from "./SearchField.js";
+import SearchField from "./searchField/SearchField.js";
 
 export default function Navbar(props) {
   const { changeLayout, setQuery, query, setPathName } = props;

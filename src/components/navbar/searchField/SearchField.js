@@ -1,5 +1,5 @@
-import SearchIcon from "../../assets/icons/SearchIcon.js";
-import XIcon from "../../assets/icons/XIcon.js";
+import SearchIcon from "../../../assets/icons/SearchIcon.js";
+import XIcon from "../../../assets/icons/XIcon.js";
 
 export default function SearchField(props) {
   const { setQuery, query } = props;
