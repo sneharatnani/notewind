@@ -3,29 +3,58 @@ import userEvent from "@testing-library/user-event";
 import NoteModal from "../NoteModal.js";
 
 jest.mock("../toolbar/Toolbar");
-let isOpen = true;
-let closeModal = jest.fn();
-let title = "title";
-let deleted = false;
-let handleChange = jest.fn();
-let label = "label";
-let body = "body";
+let props = {
+  isOpen: true,
+  closeModal: jest.fn(),
+  title: "title",
+  deleted: false,
+  handleChange: jest.fn(),
+  label: "label",
+  body: "body",
+};
 
 describe("NoteModal", () => {
-  it("calls handleChange", () => {
-    render(
-      <NoteModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        title={title}
-        deleted={deleted}
-        handleChange={handleChange}
-        label={label}
-        body={body}
-      />
-    );
+  beforeEach(() => {
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
+  });
 
-    userEvent.type(screen.getByPlaceholderText("Label"), "a");
-    expect(handleChange).toBeCalled();
+  it("calls handleChange", () => {
+    render(<NoteModal {...props} />);
+    userEvent.type(screen.getByPlaceholderText("Title"), "a");
+    userEvent.type(screen.getByPlaceholderText(/label/i), "a");
+    userEvent.type(screen.getByPlaceholderText(/start here/i), "a");
+
+    expect(props.handleChange).toBeCalledTimes(3);
+  });
+
+  it("shows props correctly as input value", () => {
+    render(<NoteModal {...props} />);
+    const title = screen.getByPlaceholderText("Title");
+    const label = screen.getByPlaceholderText(/label/i);
+    const body = screen.getByPlaceholderText(/start here/i);
+
+    expect(title).toHaveValue("title");
+    expect(label).toHaveValue("label");
+    expect(body).toHaveValue("body");
+  });
+
+  it("should note call handleChange when deleted is true", () => {
+    props.deleted = true;
+    render(<NoteModal {...props} />);
+    const title = screen.getByPlaceholderText("Title");
+    const label = screen.getByPlaceholderText(/label/i);
+    const body = screen.getByPlaceholderText(/start here/i);
+    userEvent.type(title, "a");
+    userEvent.type(label, "a");
+    userEvent.type(body, "a");
+
+    expect(props.handleChange).not.toBeCalled();
+    expect(title).toBeDisabled();
   });
 });

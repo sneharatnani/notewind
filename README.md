@@ -32,6 +32,10 @@ NoteWind is a note-taking app, created with ReactJS and Firebase.
 
 - [Tailwind CSS](https://tailwindcss.com/)
 
+- [Jest](https://jestjs.io/)
+
+- [Testing Library](https://testing-library.com/)
+
 ## Getting Started
 
 ### Project setup
@@ -48,6 +52,9 @@ npm install
 
 # starting server
 npm start
+
+# testing with Jest
+npm run test
 ```
 
 ### Firebase setup

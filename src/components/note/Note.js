@@ -10,6 +10,7 @@ export default function Note(props) {
     <>
       <div className="w-[calc(100% / 1)] mb-4">
         <div
+          data-testid="note"
           className={`group w-full rounded-lg p-4 border border-gray-200 box-border overflow-hidden cursor-pointer hover:shadow-sm hover:border-gray-300 flex flex-col justify-between ${bg}`}
           onClick={() => {
             setIsOpen(true);
