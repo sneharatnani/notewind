@@ -8,7 +8,7 @@ export default function Labels(props) {
   const { allNotes } = useNotesData();
 
   const labeledNotes = allNotes
-    .filter((note) => note.label.split(" ").join("") === pathName)
+    .filter((note) => note.label.replace(/\s/g, "") === pathName)
     .map((n) => <Note {...n} key={n.id} />);
 
   const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);

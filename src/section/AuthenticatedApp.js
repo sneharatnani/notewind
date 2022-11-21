@@ -42,6 +42,7 @@ export default function AuthenticatedApp() {
               <Labels isGrid={isGrid} query={query} pathName={pathName} />
             }
           />
+          {/* catch all */}
           <Route path="*" element={<Notes isGrid={isGrid} query={query} />} />
         </Routes>
       </main>

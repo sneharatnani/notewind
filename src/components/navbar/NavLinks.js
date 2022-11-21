@@ -11,12 +11,7 @@ export default function NavLinks(props) {
 
   function getAllLabels() {
     const labels = labeledNotes.map((n) => n.label);
-    let allLabels = [];
-    for (let i = 0; i < labels.length; i++) {
-      if (!allLabels.includes(labels[i])) {
-        allLabels.push(labels[i]);
-      }
-    }
+    const allLabels = [...new Set(labels)].sort((a, b) => a.localeCompare(b));
     return allLabels;
   }
 
@@ -55,15 +50,15 @@ export default function NavLinks(props) {
       </Link>
 
       {/* all labels */}
-      {getAllLabels().map((label, i) => (
+      {getAllLabels().map((label) => (
         <Link
-          to={`/${label.split(" ").join("")}`}
+          to={`/${label.replace(/\s/g, "")}`}
           onClick={() => {
-            setPathName(label.split(" ").join(""));
+            setPathName(label.replace(/\s/g, ""));
             handleClick();
           }}
           className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"
-          key={i}
+          key={label}
         >
           <LabelIcon svgProps="mr-4 flex-shrink-0 h-6 w-6" />
           {label}
