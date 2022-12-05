@@ -11,7 +11,7 @@ jest.mock("./../NoteLabel.js", () => ({ label }) => {
 describe("Note", () => {
   it("should show props correctly", () => {
     const { container } = render(
-      <Note title="title" body="note body" label="label" bg="bg-white" />
+      <Note title="title" body="note body" label={["label"]} bg="bg-white" />
     );
 
     expect(container).toMatchSnapshot();
@@ -22,7 +22,9 @@ describe("Note", () => {
     const useStateMock = (initState) => [initState, setState];
     jest.spyOn(React, "useState").mockImplementation(useStateMock);
 
-    render(<Note title="title" body="note body" label="label" bg="bg-white" />);
+    render(
+      <Note title="title" body="note body" label={["label"]} bg="bg-white" />
+    );
     userEvent.click(screen.getByTestId("note"));
 
     expect(setState).toHaveBeenCalledTimes(1);

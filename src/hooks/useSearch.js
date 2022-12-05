@@ -6,7 +6,7 @@ export default function useSearch(query) {
     (note) =>
       note.title.toLowerCase().includes(query.toLowerCase()) ||
       note.body.toLowerCase().includes(query.toLowerCase()) ||
-      note.label.toLowerCase().includes(query.toLowerCase())
+      note.label.join(" ").toLowerCase().includes(query.toLowerCase())
   );
 
   return searchResult;

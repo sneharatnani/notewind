@@ -5,72 +5,75 @@ import Pin from "./Pin.js";
 import CheckIcon from "../../../assets/icons/CheckIcon.js";
 import RestoreIcon from "../../../assets/icons/RestoreIcon.js";
 import DeleteForeverIcon from "../../../assets/icons/DeleteForeverIcon.js";
-import IconContainer from "./IconContainer.js";
 import UnarchiveIcon from "../../../assets/icons/UnArchiveIcon.js";
+import LabelContainer from "./label/LabelContainer.js";
 
 export default function Toolbar(props) {
-  const {
-    closeModal,
-    changeBg,
-    binNote,
-    archiveNote,
-    unarchiveNote,
-    pinNote,
-    restoreNote,
-    deleteNoteForever,
-    pinned,
-    deleted,
-    archived,
-  } = props;
+  const { deleted, archived } = props;
 
   return (
     <>
       <div className="flex justify-between items-center mt-3">
         <div className="flex gap-4 text-gray-600">
-          {/* color palette */}
-          {!deleted && <ColorPalette changeBg={changeBg} />}
+          {!deleted && <ColorPalette changeBg={props.changeBg} />}
 
-          {/* bin */}
           {!deleted && (
-            <IconContainer handleClick={binNote}>
+            <button className="hover:text-gray-500/80" onClick={props.binNote}>
               <BinIcon svgProps="h-5 w-5" />
-            </IconContainer>
+            </button>
           )}
 
-          {/* archive */}
           {!archived && !deleted && (
-            <IconContainer handleClick={archiveNote}>
+            <button
+              className="hover:text-gray-500/80"
+              onClick={props.archiveNote}
+            >
               <ArchiveIcon svgProps="h-5 w-5" />
-            </IconContainer>
+            </button>
           )}
 
-          {/* pin */}
-          {!archived && !deleted && <Pin pinNote={pinNote} pinned={pinned} />}
+          {!deleted && (
+            <LabelContainer
+              label={props.label}
+              deleteLabel={props.deleteLabel}
+              addNewLabel={props.addNewLabel}
+            />
+          )}
 
-          {/* unarchive */}
+          {!archived && !deleted && (
+            <Pin pinNote={props.pinNote} pinned={props.pinned} />
+          )}
+
           {archived && !deleted && (
-            <IconContainer handleClick={unarchiveNote}>
+            <button
+              className="hover:text-gray-500/80"
+              onClick={props.unarchiveNote}
+            >
               <UnarchiveIcon />
-            </IconContainer>
+            </button>
           )}
 
-          {/* deleteForever */}
           {deleted && (
-            <IconContainer handleClick={deleteNoteForever}>
+            <button
+              className="hover:text-gray-500/80"
+              onClick={props.deleteNoteForever}
+            >
               <DeleteForeverIcon />
-            </IconContainer>
+            </button>
           )}
 
-          {/* restore */}
           {deleted && (
-            <IconContainer handleClick={restoreNote}>
+            <button
+              className="hover:text-gray-500/80"
+              onClick={props.restoreNote}
+            >
               <RestoreIcon />
-            </IconContainer>
+            </button>
           )}
         </div>
 
-        {/* check */}
-        <button onClick={closeModal} data-testid="save-note">
+        {/* save note */}
+        <button onClick={props.closeModal} data-testid="save-note">
           <CheckIcon />
         </button>
       </div>

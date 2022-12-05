@@ -1,6 +1,6 @@
-import NoteLabel from "./NoteLabel.js";
 import { useState } from "react";
 import NotePreview from "../NotePreview.js";
+import NoteLabel from "./NoteLabel.js";
 
 export default function Note(props) {
   const { title, body, label, bg } = props;
@@ -23,7 +23,13 @@ export default function Note(props) {
               {body}
             </p>
           </div>
-          <NoteLabel label={label} />
+          {label.length !== 0 && (
+            <div className="mt-2">
+              {[...label].map((l) => (
+                <NoteLabel label={l} key={l} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <NotePreview {...props} isOpen={isOpen} setIsOpen={setIsOpen} />

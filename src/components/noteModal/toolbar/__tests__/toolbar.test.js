@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import Toolbar from "../Toolbar.js";
 
 describe("Toolbar", () => {
-  it("Shows ColorPalette, pin, archived and bin if deleted and archived is false", () => {
+  it("Shows ColorPalette, pin, archived, label and bin if deleted and archived is false", () => {
     const { container } = render(<Toolbar deleted={false} archived={false} />);
     expect(container).toMatchSnapshot();
   });

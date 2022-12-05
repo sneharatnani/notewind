@@ -22,9 +22,13 @@ exports[`Note should show props correctly 1`] = `
           note body
         </p>
       </div>
-      <span>
-        label
-      </span>
+      <div
+        class="mt-2"
+      >
+        <span>
+          label
+        </span>
+      </div>
     </div>
   </div>
 </div>

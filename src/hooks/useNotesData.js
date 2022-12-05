@@ -30,7 +30,7 @@ export default function useNotesData() {
     (note) => note.archived === true && note.deleted === false
   );
 
-  const labeledNotes = allNotes.filter((note) => note.label !== "");
+  const labeledNotes = allNotes.filter((note) => note.label.length !== 0);
 
   const pinned = allNotes.filter(
     (note) =>

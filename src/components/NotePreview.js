@@ -6,24 +6,13 @@ import { notesRef } from "../firebase-config.js";
 import { doc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 
 export default function NotePreview(props) {
-  const {
-    id,
-    title,
-    body,
-    bg,
-    label,
-    pinned,
-    deleted,
-    archived,
-    isOpen,
-    setIsOpen,
-  } = props;
+  const { id, pinned, deleted, archived, isOpen, setIsOpen } = props;
 
   const [note, setNote] = useState({
-    title,
-    body,
-    bg,
-    label,
+    title: props.title,
+    body: props.body,
+    bg: props.bg,
+    label: props.label,
   });
 
   // toast
@@ -102,7 +91,7 @@ export default function NotePreview(props) {
 
   function setUpdatedNote() {
     for (let key in note) {
-      if (note[key] !== props[key]) {
+      if (note[key].toString() !== props[key].toString()) {
         updateNote(id, { [key]: note[key] });
       }
     }
@@ -111,6 +100,23 @@ export default function NotePreview(props) {
   function closeModal() {
     setUpdatedNote();
     setIsOpen(false);
+  }
+
+  function deleteLabel(labelName) {
+    setNote((prevNote) => ({
+      ...prevNote,
+      label: prevNote.label.filter((l) => l !== labelName),
+    }));
+  }
+
+  function addNewLabel(labelName) {
+    const trimmedLabel = labelName.trim();
+    if (trimmedLabel !== "" && !note.label.includes(trimmedLabel)) {
+      setNote((prevNote) => ({
+        ...prevNote,
+        label: [...prevNote.label, trimmedLabel],
+      }));
+    }
   }
 
   const previewProps = {
@@ -128,6 +134,8 @@ export default function NotePreview(props) {
     pinNote,
     restoreNote,
     deleteNoteForever,
+    deleteLabel,
+    addNewLabel,
   };
 
   return <NoteModal {...previewProps} />;

@@ -9,7 +9,7 @@ let props = {
   title: "title",
   deleted: false,
   handleChange: jest.fn(),
-  label: "label",
+  label: ["label"],
   body: "body",
 };
 
@@ -27,20 +27,17 @@ describe("NoteModal", () => {
   it("calls handleChange", () => {
     render(<NoteModal {...props} />);
     userEvent.type(screen.getByPlaceholderText("Title"), "a");
-    userEvent.type(screen.getByPlaceholderText(/label/i), "a");
     userEvent.type(screen.getByPlaceholderText(/start here/i), "a");
 
-    expect(props.handleChange).toBeCalledTimes(3);
+    expect(props.handleChange).toBeCalledTimes(2);
   });
 
   it("shows props correctly as input value", () => {
     render(<NoteModal {...props} />);
     const title = screen.getByPlaceholderText("Title");
-    const label = screen.getByPlaceholderText(/label/i);
     const body = screen.getByPlaceholderText(/start here/i);
 
     expect(title).toHaveValue("title");
-    expect(label).toHaveValue("label");
     expect(body).toHaveValue("body");
   });
 
@@ -48,10 +45,8 @@ describe("NoteModal", () => {
     props.deleted = true;
     render(<NoteModal {...props} />);
     const title = screen.getByPlaceholderText("Title");
-    const label = screen.getByPlaceholderText(/label/i);
     const body = screen.getByPlaceholderText(/start here/i);
     userEvent.type(title, "a");
-    userEvent.type(label, "a");
     userEvent.type(body, "a");
 
     expect(props.handleChange).not.toBeCalled();

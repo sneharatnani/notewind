@@ -5,15 +5,18 @@ import useSearch from "../hooks/useSearch.js";
 
 export default function Labels(props) {
   const { isGrid, query, pathName } = props;
-  const { allNotes } = useNotesData();
-
-  const labeledNotes = allNotes
-    .filter((note) => note.label.replace(/\s/g, "") === pathName)
-    .map((n) => <Note {...n} key={n.id} />);
-
-  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
+  const { labeledNotes } = useNotesData();
+  const searchResults = useSearch(query);
 
   return (
-    <Layout isGrid={isGrid}>{query ? searchedNotes : labeledNotes}</Layout>
+    <Layout isGrid={isGrid}>
+      {query
+        ? searchResults.map((note) => <Note {...note} key={note.id} />)
+        : labeledNotes
+            .filter((note) =>
+              note.label.includes(pathName.split("-").join(" "))
+            )
+            .map((n) => <Note {...n} key={n.id} />)}
+    </Layout>
   );
 }

@@ -5,8 +5,9 @@ import Layout from "../components/Layout.js";
 
 export default function Bin({ isGrid, query }) {
   const { deleted } = useNotesData();
+  const searchResults = useSearch(query);
 
-  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
+  const searchedNotes = searchResults.map((n) => <Note {...n} key={n.id} />);
 
   const deletedNotes = deleted.map((n) => <Note {...n} key={n.id} />);
 

@@ -6,12 +6,13 @@ import Layout from "../components/Layout.js";
 
 export default function Notes({ isGrid, query }) {
   const { pinned, unpinned } = useNotesData();
+  const searchResults = useSearch(query);
 
   const pinnedNotes = pinned.map((n) => <Note {...n} key={n.id} />);
 
   const otherNotes = unpinned.map((n) => <Note {...n} key={n.id} />);
 
-  const searchedNotes = useSearch(query).map((n) => <Note {...n} key={n.id} />);
+  const searchedNotes = searchResults.map((n) => <Note {...n} key={n.id} />);
 
   return (
     <>

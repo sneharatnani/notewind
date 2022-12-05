@@ -12,7 +12,7 @@ export default function NewNote() {
   const newEmptyNote = {
     title: "",
     body: "",
-    label: "",
+    label: [],
     archived: false,
     author: user.uid,
     bg: "bg-white",
@@ -103,6 +103,23 @@ export default function NewNote() {
     setNewNote((prevNote) => ({ ...prevNote, pinned: !prevNote.pinned }));
   };
 
+  function deleteLabel(labelName) {
+    setNewNote((prevNote) => ({
+      ...prevNote,
+      label: prevNote.label.filter((l) => l !== labelName),
+    }));
+  }
+
+  function addNewLabel(labelName) {
+    const trimmedLabel = labelName.trim();
+    if (trimmedLabel !== "" && !newNote.label.includes(trimmedLabel)) {
+      setNewNote((prevNote) => ({
+        ...prevNote,
+        label: [...prevNote.label, trimmedLabel],
+      }));
+    }
+  }
+
   const newNoteProps = {
     ...newNote,
     isOpen,
@@ -112,6 +129,8 @@ export default function NewNote() {
     binNote,
     archiveNote,
     pinNote,
+    deleteLabel,
+    addNewLabel,
   };
 
   return (

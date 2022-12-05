@@ -11,7 +11,10 @@ export default function NavLinks(props) {
 
   function getAllLabels() {
     const labels = labeledNotes.map((n) => n.label);
-    const allLabels = [...new Set(labels)].sort((a, b) => a.localeCompare(b));
+    const mergedLabels = [].concat(...labels);
+    const allLabels = [...new Set(mergedLabels)].sort((a, b) =>
+      a.localeCompare(b)
+    );
     return allLabels;
   }
 
@@ -52,9 +55,9 @@ export default function NavLinks(props) {
       {/* all labels */}
       {getAllLabels().map((label) => (
         <Link
-          to={`/${label.replace(/\s/g, "")}`}
+          to={`/${label.replace(/\s/g, "-")}`}
           onClick={() => {
-            setPathName(label.replace(/\s/g, ""));
+            setPathName(label.replace(/\s/g, "-"));
             handleClick();
           }}
           className="text-white font-poppins hover:bg-sky-300/50 group flex items-center px-2 py-2 text-lg font-medium rounded-md break-all"

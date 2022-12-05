@@ -3,8 +3,7 @@ import { Fragment } from "react";
 import Toolbar from "./toolbar/Toolbar.js";
 
 export default function NoteModal(props) {
-  const { isOpen, closeModal, bg, title, deleted, handleChange, label, body } =
-    props;
+  const { isOpen, closeModal, bg, title, deleted, handleChange, body } = props;
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -21,7 +20,7 @@ export default function NoteModal(props) {
           <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0">
           <div className="flex min-h-full items-center justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -33,7 +32,7 @@ export default function NoteModal(props) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`font-poppins w-full max-w-[35rem] transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${bg}`}
+                className={`font-poppins w-full max-w-[35rem] transform rounded-2xl p-6 text-left align-middle shadow-xl transition-all ${bg}`}
               >
                 {/* note title */}
                 <input
@@ -44,16 +43,6 @@ export default function NoteModal(props) {
                   disabled={deleted}
                   onChange={handleChange}
                   className={`font-medium tracking-wide border-0 w-full focus:ring-0 block focus-visible:outline-none text-lg bg-transparent`}
-                />
-                {/* note label */}
-                <input
-                  placeholder="Label"
-                  type="text"
-                  name="label"
-                  disabled={deleted}
-                  value={label}
-                  onChange={handleChange}
-                  className="border-0 w-full tracking-wide focus:ring-0 block focus-visible:outline-none text-sm bg-transparent"
                 />
                 {/* note body */}
                 <textarea
