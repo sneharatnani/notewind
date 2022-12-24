@@ -12,6 +12,7 @@ export default function LabelContainer(props) {
       <button
         className="hover:text-gray-500/80"
         onClick={() => setShowLabels(true)}
+        data-testid="show labels"
       >
         <LabelIcon svgProps="h-5 w-5" />
       </button>
@@ -41,6 +42,7 @@ export default function LabelContainer(props) {
                 addNewLabel(newLabel);
                 setNewLabel("");
               }}
+              data-testid="new-label-btn"
             >
               Create New Label
             </button>

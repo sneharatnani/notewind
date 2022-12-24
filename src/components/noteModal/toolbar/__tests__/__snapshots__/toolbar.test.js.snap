@@ -100,6 +100,7 @@ exports[`Toolbar Shows ColorPalette, pin, archived, label and bin if deleted and
       </button>
       <button
         class="hover:text-gray-500/80"
+        data-testid="show labels"
       >
         <svg
           class="h-5 w-5"
