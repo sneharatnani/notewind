@@ -29,30 +29,8 @@ export default function NewNote() {
     }
   }, [newNote]);
 
-  // to show toast
+  // toast
   const { setShow, setMessage } = useContext(ToastContext);
-  useEffect(() => {
-    if (newNote.deleted && (newNote.body !== "" || newNote.title !== "")) {
-      setMessage("Note Binned");
-      setShow(true);
-    } else if (newNote.deleted && newNote.body === "" && newNote.title === "") {
-      setMessage("Can't Delete Empty Note");
-      setShow(true);
-    } else if (
-      newNote.archived &&
-      (newNote.body !== "" || newNote.title !== "")
-    ) {
-      setMessage("Note Archived");
-      setShow(true);
-    } else if (
-      newNote.archived &&
-      newNote.body === "" &&
-      newNote.title === ""
-    ) {
-      setMessage("Can't Archive Empty Note");
-      setShow(true);
-    }
-  }, [newNote]);
 
   // firebase
   async function addNewNote(newNote) {
@@ -91,11 +69,23 @@ export default function NewNote() {
 
   const binNote = () => {
     setNewNote((prevNote) => ({ ...prevNote, deleted: true }));
+    if (newNote.body === "" && newNote.title === "") {
+      setMessage("Can't Delete Empty Note");
+    } else if (newNote.body !== "" || newNote.title !== "") {
+      setMessage("Note Binned");
+    }
+    setShow(true);
     setTimeout(() => setShow(false), 4000);
   };
 
   const archiveNote = () => {
     setNewNote((prevNote) => ({ ...prevNote, archived: true }));
+    if (newNote.body !== "" || newNote.title !== "") {
+      setMessage("Note Archived");
+    } else if (newNote.body === "" && newNote.title === "") {
+      setMessage("Can't Archive Empty Note");
+    }
+    setShow(true);
     setTimeout(() => setShow(false), 4000);
   };
 
