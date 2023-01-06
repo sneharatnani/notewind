@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LabelIcon from "../../../../assets/icons/LabelIcon.js";
+import LabelIcon from "../../../assets/icons/LabelIcon.js";
 import Label from "./Label.js";
 
 export default function LabelContainer(props) {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ColorPaletteIcon from "../../../assets/icons/ColorPaletteIcon.js";
+import ColorPaletteIcon from "../../assets/icons/ColorPaletteIcon.js";
 
 export default function ColorPalette(props) {
   const { changeBg } = props;

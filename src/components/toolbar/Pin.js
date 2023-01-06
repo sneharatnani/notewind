@@ -1,5 +1,5 @@
-import PinIcon from "../../../assets/icons/PinIcon.js";
-import UnpinIcon from "../../../assets/icons/UnpinIcon.js";
+import PinIcon from "../../assets/icons/PinIcon.js";
+import UnpinIcon from "../../assets/icons/UnpinIcon.js";
 
 export default function Pin(props) {
   const { pinned, pinNote } = props;

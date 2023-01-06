@@ -1,4 +1,4 @@
-import NewNote from "../components/NewNote.js";
+import NewNote from "../components/newNote/NewNote.js";
 import useNotesData from "../hooks/useNotesData.js";
 import Note from "../components/note/Note.js";
 import useSearch from "../hooks/useSearch.js";

@@ -1,11 +1,11 @@
 import ColorPalette from "./ColorPalette.js";
-import BinIcon from "../../../assets/icons/BinIcon.js";
-import ArchiveIcon from "../../../assets/icons/ArchiveIcon.js";
+import BinIcon from "../../assets/icons/BinIcon.js";
+import ArchiveIcon from "../../assets/icons/ArchiveIcon.js";
 import Pin from "./Pin.js";
-import CheckIcon from "../../../assets/icons/CheckIcon.js";
-import RestoreIcon from "../../../assets/icons/RestoreIcon.js";
-import DeleteForeverIcon from "../../../assets/icons/DeleteForeverIcon.js";
-import UnarchiveIcon from "../../../assets/icons/UnArchiveIcon.js";
+import CheckIcon from "../../assets/icons/CheckIcon.js";
+import RestoreIcon from "../../assets/icons/RestoreIcon.js";
+import DeleteForeverIcon from "../../assets/icons/DeleteForeverIcon.js";
+import UnarchiveIcon from "../../assets/icons/UnArchiveIcon.js";
 import LabelContainer from "./label/LabelContainer.js";
 
 export default function Toolbar(props) {
